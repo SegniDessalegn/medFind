@@ -13,7 +13,7 @@ medFind
 - List all the pharmacies located in a region that have a medicine.
 - List all the pharamcies that are the closest to the user that also have a medicine specified by the user.
 - Rank a list of pharmacies based on their distance from a specified location.
-- Map guidance using Google Maps API integration
+- Provide Map view through Google Maps API integration
 - 
 # Group Members
                 Name                  Id                 Section 
