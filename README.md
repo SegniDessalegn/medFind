@@ -5,9 +5,7 @@ This is a web based application that provides information regarding the availabi
 # Title of the project
 medFind
 
-# Busines features
-- authentication
-- authorization
+# features
 - searching medicines in pharmacies database
 - sorting the pharmacies based on location of the user and the location of the pharmacies
 - users can manage their watchlist by adding, removing and updating their watchlist
