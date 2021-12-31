@@ -11,7 +11,7 @@ medFind
 - sorting the pharmacies based on location of the user and the location of the pharmacies
 
 # Group Members
-              Name         		      Id      	         Section 
+                Name                  Id                 Section 
         1. Segni Dessalegn        UGR/8961/12               3
         2. Amha Kindu             UGR/8415/12               1
         3. Kaleab Kindu           UGR/8121/12               2
