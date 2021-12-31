@@ -6,10 +6,13 @@ This is a web based application that provides information regarding the availabi
 medFind
 
 # features
-- searching medicines in pharmacies database
-- sorting the pharmacies based on location of the user and the location of the pharmacies
+<!-- - searching medicines in pharmacies database
+- sorting the pharmacies based on location of the user and the location of the pharmacies -->
 - users can manage their watchlist by adding, removing and updating their watchlist
-
+- List all the pharmacies located in a region that have a medicine.
+- List all the pharamcies that are the closest to the user that also have a medicine specified by the user.
+- Rank a list of pharmacies based on their distance from a specified location.
+- 
 # Group Members
                 Name                  Id                 Section 
         1. Segni Dessalegn        UGR/8961/12               3
