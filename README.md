@@ -1,5 +1,6 @@
 # medFind
 This is a web based application that enables users to find pharmacies that have medicines they want.
+This is a web based application that provides information regarding the availability and whereabouts of a medicine for the patients/customers through an interactive and responsive web-based application. 
 
 # Title of the project
 medFind
@@ -9,6 +10,7 @@ medFind
 - authorization
 - searching medicines in pharmacies database
 - sorting the pharmacies based on location of the user and the location of the pharmacies
+- users can manage their watchlist by adding, removing and updating their watchlist
 
 # Group Members
                 Name                  Id                 Section 
