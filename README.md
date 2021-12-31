@@ -8,7 +8,6 @@ medFInd is a web based application that provides information regarding the avail
 - List all the pharmacies located in a region that have a medicine.
 - List all the pharamcies that are the closest to the user that also have a medicine specified by the user.
 - Rank a list of pharmacies based on their distance from a specified location.
-- users can manage their watchlist by adding, removing and updating the medicines in it.
 - provide a watchlist where users can add and, remove medicines from.
 - Provide map view through Google Maps API integration.
 
