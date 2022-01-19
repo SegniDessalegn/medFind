@@ -8,103 +8,75 @@
 			href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css"
 			rel="stylesheet"
 		/> -->
+		<link rel="stylesheet" href="../static/css/style.tailwind.css">
 		<script src="https://cdn.tailwindcss.com"></script>
-
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Russo+One&display=swap" rel="stylesheet">
 		<title>Document</title>
 	</head>
-	<body>
-		<header class="sticky bg-green-200 flex h-20 items-center">
-			<div class="w-min ml-10 text-5xl">
-				<h1>
-					<span class="text-white">med</span
-					><span class="text-green-900">Find</span>
-				</h1>
-			</div>
-			<nav class="m-auto w-3/4 flex justify-end items-center text-3xl">
-				<ul class="m-3 text-white">
-					<li><a href="" class="">Home</a></li>
-				</ul>
-				<ul class="m-3">
-					<li><a href="">Home</a></li>
-				</ul>
-				<ul class="m-3">
-					<li><a href="">Home</a></li>
-				</ul>
-				<ul class="m-3">
-					<li><a href="">Home</a></li>
-				</ul>
-				<ul class="m-3">
-					<li><a href="">Home</a></li>
-				</ul>
-			</nav>
-		</header>
+<body onresize="resize()">
+	<div class="nav flex justify-between text-lg bg-green-300 p-3 h-min sticky top-0">
+		<div class="logo"><span class="text-white font-bold font-sans">med</span><span class="text-cyan-700 font-bold font-sans">Find</span></div>
+		<div>
+		<div class="block sm:hidden"><img onclick="navDropDown()"  class="h-7 ml-auto" src="/src/main/resources/static/images/ui.png"alt=""/></div>
+		<div id="dropdown" class="links sm:flex justify-around hidden font-bold font-sans text-cyan-700">
+			<div><a href="#" class="decoration-none ml-3 text-white">Home</a></div>
+			<div><a href="#" class="decoration-none ml-3">Send request</a></div>
+			<div><a href="#" class="decoration-none ml-3">Wachlist</a></div>
+			<div><a href="#" class="decoration-none ml-3">Contact us</a></div>
+		</div></div>
+	</div>
 
-		<main class="min-h-screen">
-		<div class="w-2/5 mx-auto">
-			<div class="mx-auto mt-52 bg-red-400 p-10 h-fit">
-				<h1 class="mx-auto text-8xl font-bold  text-center">
-					<span class="text-green-400">med</span
-					><span class="text-green-900">Find</span>
-				</h1>
-				<div class="">
-					<form action="" id="target" class="flex flex-col items-center justify-between" style="background-color: blue;">
-						<input
-							type="text"
-							class="py-2 my-5 border-b-2 w-2/3 active:w-1 hover:bg-green-500 focus:w-full focus:border-red-50 focus:outline-none transition:ease-out duration:500"
-							placeholder="Type your medicine here"
-						/>
-						<div class="flex justify-around bg-red-500 items-center h-10">
-							<select
-								name="region"
-								id="region"
-								class="py-2 bg-green-300 rounded-full px-20"
-							>
-								<option value="region1">1area</option>
-								<option value="region2">2area</option>
-								<option value="region3">3area</option>
-							</select>
-							<button onclick="changeLayout()"
-								class="py-2 px-10  bg-green-400 rounded-full hover:bg-gray-500"
-								type="submit"
-							>
-								Search
-							</button>
-						</div>
-					</form>
-				</div>
+
+<div class="justify-center items-center mt-40">
+	<div id="logo-large" class="text-lg font-bold m-10 text-center md:text-8xl text-6xl"><span class="text-cyan-300">med</span><span>Find</span></div>
+		<div class="col-span-5 grow">
+			<form class="flex flex-col justify-center items-center ">
+				<input type="text" class="w-1/2  transition:ease-out duration-300 border-b border-blue-500 focus:outline-0  focus:text-blue-900 focus:w-2/3" placeholder='Type your medicine here'></input>
+			<div class="w-2/3" id="suggestions">
 			</div>
+			</form>
 		</div>
-		</main>
-		<footer class="bg-green-300 flex w-full h-14 items-center">
-			<p class="ml-8 text-2xl">privacy policy</p>
-			<div class="flex w-3/4 justify-end">
-				<img
-					class="h-8 m-3"
-					src="/src/main/resources/static/images/gmail.png"
-					alt=""
-				/>
-				<img
-					class="h-8 m-3"
-					src="/src/main/resources/static/images/github.png"
-					alt=""
-				/>
-				<img
-					class="h-8 m-3"
-					src="/src/main/resources/static/images/linkedin.png"
-					alt=""
-				/>
-				<img
-					class="h-8 m-3"
-					src="/src/main/resources/static/images/telegram.png"
-					alt=""
-				/>
-				<img
-					class="h-8 m-3 mr-5"
-					src="/src/main/resources/static/images/facebook.png"
-					alt=""
-				/>
-			</div>
-		</footer>
+		<div class="ml-auto mr-auto md:w-2/3 w-1/2 flex justify-around sm:flex-row flex-col items-center">
+				<button class="my-5 mx-2 py-2 px-10 rounded-full bg-cyan-100 hover:bg-cyan-200 hover:drop-shadow-xl border border-cyan-200">search in a region </button>
+				<button class="my-5 mx-2 py-2 px-10 rounded-full bg-cyan-100 hover:bg-cyan-200 hover:drop-shadow-xl border border-cyan-200">search closest to me</button>
+		</div><div>
+	</div>
+</div>
+
+
+<footer class="bg-green-300 flex w-full h-14 items-center justify-between fixed bottom-0 left-0">
+	<p class="ml-8 text-2xl">privacy policy</p>
+	<div class="flex justify-end">
+		<img
+			class="h-8 m-3"
+			src="/src/main/resources/static/images/gmail.png"
+			alt=""
+		/>
+		<img
+			class="h-8 m-3"
+			src="/src/main/resources/static/images/github.png"
+			alt=""
+		/>
+		<img
+			class="h-8 m-3"
+			src="/src/main/resources/static/images/linkedin.png"
+			alt=""
+		/>
+		<img
+			class="h-8 m-3"
+			src="/src/main/resources/static/images/telegram.png"
+			alt=""
+		/>
+		<img
+			class="h-8 m-3 mr-5"
+			src="/src/main/resources/static/images/facebook.png"
+			alt=""
+		/>
+	</div>
+	<script src="../static/js/home.js"></script>
+</footer>
 
 		<script src="../static/js/home.js"></script>
 	</body>
