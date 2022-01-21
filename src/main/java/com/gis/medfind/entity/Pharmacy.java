@@ -45,7 +45,7 @@ public class Pharmacy{
     @JoinColumn(name = "fk_server", referencedColumnName = "server_id")
     private Server pharmacyServer;
 
-    @Column(name = "pharmacy_address", unique = false, nullable = true, length = 100)
+    @Column(name = "pharmacy_address", unique = false, nullable = true, length = 400)
     private String address;
 
     @ManyToOne

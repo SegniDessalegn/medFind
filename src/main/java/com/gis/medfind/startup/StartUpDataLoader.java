@@ -112,8 +112,8 @@ public class StartUpDataLoader implements ApplicationListener<ContextRefreshedEv
             List<Role> role = new ArrayList<>();
                 role.add(adminRole);
             user.setRoles(role);
-
-        userRepo.save(user);
+        if(userRepo.findByEmail(user.getEmail())==null)
+            userRepo.save(user);
 
         this.loadMedicines();
         this.loadRegionBoundaries();
@@ -183,7 +183,7 @@ public class StartUpDataLoader implements ApplicationListener<ContextRefreshedEv
     @Transactional
     boolean loadRegionBoundaries() {
         if(regionRepo.count() > 0){
-           // return false;
+            return false;
         }
         BufferedReader bf = null;
         try{
@@ -238,15 +238,16 @@ public class StartUpDataLoader implements ApplicationListener<ContextRefreshedEv
 
     @Transactional
     boolean loadPharmacies() {
-        if(pharmRepo.count() > 0){
-            //System.out.println("Alredady loaded");
-            //return false;
+        boolean load = pharmRepo.count() == 0;
+        if(!load){
+            System.out.println("Alredady loaded");
+            return false;
         }
         
         BufferedReader bf = null;
         try{
             String path = "src/main/java/com/gis/medfind/startup/InitialData";
-            FileReader fr = new FileReader(path + "/pharmacy_addis_ababa.json");
+            FileReader fr = new FileReader(path + "/pharmacies_in_addisababa.json");
             bf = new BufferedReader(fr);
 
             String data = "";
@@ -257,17 +258,17 @@ public class StartUpDataLoader implements ApplicationListener<ContextRefreshedEv
             }
             JSONObject obj = new JSONObject(data);
 
-            JSONArray elements = obj.getJSONArray("elements");
-            for(int i = 0; i< elements.length();i++){
-                Double latitude, longitude;
-                JSONObject tags;
+            JSONArray featuresArray = obj.getJSONArray("features");
+            for(int i = 0; i< featuresArray.length();i++){
+                Double coordinate[] = new Double[2];
                 String name;
                 try{
-                    JSONObject node = elements.getJSONObject(i);
-                    latitude = node.getDouble("lat");
-                    longitude = node.getDouble("lon");
-                    tags = node.getJSONObject("tags");
-                    name = tags.getString("name");
+                    JSONObject node = featuresArray.getJSONObject(i).getJSONObject("properties");
+                    name = node.getString("name");
+                    JSONObject geom = featuresArray.getJSONObject(i).getJSONObject("geometry");
+                    coordinate[0] = geom.getJSONArray("coordinates").getDouble(1);
+                    coordinate[1] = geom.getJSONArray("coordinates").getDouble(0);
+                    
 
                 }catch(JSONException je){
                     continue;
@@ -276,11 +277,11 @@ public class StartUpDataLoader implements ApplicationListener<ContextRefreshedEv
 
                 Pharmacy pharm = new Pharmacy();
                 pharm.setName(name);
-                Coordinate location = new Coordinate(latitude,longitude);
+                Coordinate location = new Coordinate(coordinate[0], coordinate[1]);
                 Point geomPoint = geometryFactory.createPoint(location);
                 geomPoint.setSRID(4326);
                 pharm.setLocation(geomPoint);
-                pharm.setAddress("");
+                pharm.setAddress(utils.reverseGeocode(geomPoint.getX(), geomPoint.getY()));
                 pharm = pharmRepo.save(pharm);
                 name = "license_"+pharm.getId();     
                     FileInfo license = new FileInfo();
@@ -296,7 +297,7 @@ public class StartUpDataLoader implements ApplicationListener<ContextRefreshedEv
                     System.out.println("------->>>"+surround.getName());
                 }else{System.out.println("----------->>>null");}
                 pharm = pharmRepo.save(pharm);
-                pharm.setOwner(userRepo.getByEmail("amhaznif@gmail.com"));
+                pharm.setOwner(userRepo.findByEmail("amhaznif@gmail.com"));
                     Server pharmServer = new Server();
                         pharmServer.setDatabaseName("drugstore");
                         pharmServer.setDrugInventory("Table_"+pharm.getId());

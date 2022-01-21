@@ -128,7 +128,40 @@
 			<artifactId>json</artifactId>
 			<version>20211205</version>
 		</dependency>
-
+				<!-- Geocoding API -->
+		<!-- https://mvnrepository.com/artifact/me.atlis/nominatim-api -->
+		<dependency>
+			<groupId>me.atlis</groupId>
+			<artifactId>nominatim-api</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+				<!-- External Dependencies for nominatim-api -->
+				<dependency>
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+					<version>RELEASE</version>
+				</dependency>
+				<dependency>
+					<groupId>org.openjfx</groupId>
+					<artifactId>javafx-base</artifactId>
+					<version>12-ea+6</version>
+				</dependency>
+				<dependency>
+					<groupId>com.google.code.gson</groupId>
+					<artifactId>gson</artifactId>
+					<version>RELEASE</version>
+				</dependency>
+				<dependency>
+					<groupId>me.atlis</groupId>
+					<artifactId>atlis-location-base</artifactId>
+					<version>RELEASE</version>
+				</dependency>
+				<dependency>
+					<groupId>org.hamcrest</groupId>
+					<artifactId>hamcrest-core</artifactId>
+					<version>RELEASE</version>
+					<scope>test</scope>
+				</dependency>
 	</dependencies>
 	
 	<build>

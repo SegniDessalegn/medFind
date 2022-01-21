@@ -17,9 +17,9 @@ public interface PharmacyRepository extends JpaRepository<Pharmacy,Long> {
     , nativeQuery = true)
     List<Pharmacy> findAllPharmacyWithInRegion(@Param("regionId")  Long regionId);
 
-    @Query(value = "SELECT phc.id, phc.name, phc.location, ST_Distance(phc.location,ST_SetSRID(ST_Point(:userLongitude,:userLatitude),4326)) AS distance "
+    @Query(value = "SELECT phc.pharmacy_id, phc.pharmacy_name, phc.pharmacy_location, * "
         + "FROM pharmacy phc "
-        + "ORDER BY distance"
+        +"ORDER BY phc.pharmacy_location <-> ST_setSRID(ST_POINT(:userLongitude, :userLatitude),4326) ASC "
         + "LIMIT 45", nativeQuery = true)
     List<Pharmacy> findAllPharmaciesByDistanceFromUser(@Param("userLongitude") Double userLon, @Param("userLatitude")  Double userLat);
     

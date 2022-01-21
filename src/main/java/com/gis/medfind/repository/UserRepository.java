@@ -15,5 +15,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
                     "INNER JOIN users_roles ur "+
                     "ON u.id = ur.user_id "+
                     "WHERE u.email = :email", nativeQuery = true)
-    User getByEmail(@Param("email") String email);
+    User findByEmail(@Param("email") String email);
 }

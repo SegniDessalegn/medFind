@@ -17,16 +17,19 @@ public class SearchByUserLocationServiceImpl implements SearchByUserLocationServ
     @Autowired
     PharmacyRepository pharmRepo;
 
-
-    public List<Pharmacy> findPharmaciesByUserLocation(String medicineName, Double userLat, Double userLon){
-        List<Pharmacy> pharmsCloseToUser = pharmRepo.findAllPharmaciesByDistanceFromUser(userLat, userLon);
+    public SearchByUserLocationServiceImpl(PharmacyRepository pm){
+        this.pharmRepo = pm;
+    }
+    public List<Pharmacy> findPharmaciesByUserLocation(String medicineName, Double userLon, Double userLat){
+        List<Pharmacy> pharmsCloseToUser = pharmRepo.findAllPharmaciesByDistanceFromUser(userLon, userLat);
         List<Pharmacy> pharmsCloseToUserWithMedicine = new ArrayList<>();
         for(Pharmacy pharm: pharmsCloseToUser){
             if(pharm.checkMedicine(medicineName)){
+                System.out.println(pharm.getName());
                 pharmsCloseToUserWithMedicine.add(pharm);
             }
         }
-        return pharmsCloseToUserWithMedicine;
+        return pharmsCloseToUser;
     }
 
 }

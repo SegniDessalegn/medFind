@@ -40,9 +40,9 @@ public class SearchByRegionServiceImplTest {
         List<Pharmacy> bole_pharms = searchService
             .findPharmaciesWithInRegion(
                 regionRepo.findByName(region).getId(), 
-                "Abilify"
+                "Aceon"
             );
-        System.out.println(bole_pharms);
+        System.out.println(bole_pharms.get(10).getName());
        
     }
 }

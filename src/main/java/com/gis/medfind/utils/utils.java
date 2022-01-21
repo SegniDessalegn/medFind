@@ -6,8 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
+import com.atlis.location.model.impl.Address;
+import com.atlis.location.model.impl.MapPoint;
+import com.atlis.location.nominatim.NominatimAPI;
 import com.gis.medfind.entity.Server;
+
+import org.apache.log4j.BasicConfigurator;
+
+
 
 public class utils {
 
@@ -29,7 +35,9 @@ public class utils {
             Statement queryStmnt = conn.createStatement();
             if(cm == ConnectionMode.GET){
                 info = queryStmnt.executeQuery(query);
-                return info.getString(objectName);
+                if(info.next()){
+                    return info.getString(objectName);
+                }
             }else{
                 queryStmnt.execute(query);
             }
@@ -44,5 +52,13 @@ public class utils {
             }catch(SQLException sql){}
         }
         return "";
+    }
+    public static String reverseGeocode(Double lat, Double lon){
+        BasicConfigurator.configure();
+
+        String endpointUrl = "https://nominatim.openstreetmap.org/";
+        MapPoint mapPoint = new MapPoint().buildMapPoint(lat, lon);
+        Address address = NominatimAPI.with(endpointUrl).getAddressFromMapPoint(mapPoint);
+        return address.getDisplayName();
     }
 }

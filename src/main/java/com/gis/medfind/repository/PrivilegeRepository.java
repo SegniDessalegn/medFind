@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PrivilegeRepository extends JpaRepository<Privilege, Long> {
-    @Query(value = "SELECT prev FROM privilege prev WHERE prev.name = :name", nativeQuery = true)
+    @Query(value = "SELECT prev.id, * FROM privilege prev WHERE prev.name = :name", nativeQuery = true)
     Privilege findByName(@Param("name") String name);
 }
