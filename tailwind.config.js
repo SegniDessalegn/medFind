@@ -1,9 +1,15 @@
 module.exports = {
 	mode: process.env.NODE_ENV ? "jit" : undefined,
 	purge: ["./src/**/*.html", "./src/**/*.js"],
-	darkMode: false,
-	// content: [],
+	darkMode: "media", // or 'media' or 'class'
 	theme: {
+		colors: {
+			lightgreen: "#86D7DC",
+			darkgreen: "#097076",
+		},
+		extend: {},
+	},
+	variants: {
 		extend: {},
 	},
 	plugins: [],
