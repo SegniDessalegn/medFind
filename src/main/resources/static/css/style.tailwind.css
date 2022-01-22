@@ -5,3 +5,42 @@
 #logo-large {
 	font-family: "Russo One", sans-serif;
 }
+.logo{
+	transition: 0.2s;
+}
+
+.logo:hover{
+	font-size: larger;
+	cursor: pointer;
+}
+
+#list{
+	display: none !important;
+}
+
+#dd{
+	position: relative !important;
+}
+
+#dd:hover div{
+	display: block !important;
+	/* position: absolute !important; */
+	/* top:-10 !important;
+	left:0; */
+	/* z-index: 394375981237598374; */
+}
+
+#watchlistMedicines{
+	/* z-index: -1; */
+	padding-bottom: 50px !important;
+	height: 50vh !important;
+	overflow: auto !important;
+}
+
+#searchResult{
+	/* z-index: -1; */
+	padding-bottom: 50px !important;
+	height: 100% !important;
+	max-height: 75vh !important;
+	overflow: auto !important;
+}

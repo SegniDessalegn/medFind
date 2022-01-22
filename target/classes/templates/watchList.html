@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Russo+One&display=swap" rel="stylesheet">
 </head>
 <body onresize="resize()" class="md:h-screen">
-    <div class="nav flex justify-between text-lg bg-green-300 p-3 h-min sticky top-0">
+    <div class="nav flex justify-between z-50 text-lg bg-green-300 p-3 h-min sticky top-0">
         <div class="logo"><span class="text-white font-bold font-sans">med</span><span class="text-cyan-700 font-bold font-sans">Find</span></div>
         <div>
         <div class="block sm:hidden"><img onclick="navDropDown()"  class="h-7 ml-auto cursor-pointer" src="/src/main/resources/static/images/ui.png"alt=""/></div>
@@ -24,68 +24,101 @@
         </div></div>
     </div>
 
-    <div class="flex flex-col md:flex-row justify-between w-11/12 mx-auto mt-10 h-3/4 py-3 mb-10">
-        <div class="flex flex-col justify-start items-center md:w-1/2 rounded-xl shadow-2xl py-3 px-1 h-96 md:h-full">
-          <div class="topic">MyWatchList</div>
-          <div class="flex flex-col justify-between items-center w-11/12 rounded-xl p-3  hover:overflow-y-scroll overflow-hidden overflow-x-hidden">
-            <div class="p-1 mx-3 my-1 w-full bg-cyan-200 rounded">Medicine name</div>
-            <div class="p-1 mx-3 my-1 w-full bg-cyan-200 rounded">Medicine name</div>
-            <div class="p-1 mx-3 my-1 w-full bg-cyan-200 rounded">Medicine name</div>
-            <div class="p-1 mx-3 my-1 w-full bg-cyan-200 rounded">Medicine name</div><div class="p-1 mx-3 my-1 w-full bg-cyan-200 rounded">Medicine name</div>
-              <div class="p-1 mx-3 my-1 w-full bg-cyan-200 rounded">Medicine name</div>
-              <div class="p-1 mx-3 my-1 w-full bg-cyan-200 rounded">Medicine name</div>
-              <div class="p-1 mx-3 my-1 w-full bg-cyan-200 rounded">Medicine name</div><div class="p-1 mx-3 my-1 w-full bg-cyan-200 rounded">Medicine name</div>
-              <div class="p-1 mx-3 my-1 w-full bg-cyan-200 rounded">Medicine name</div>
-              <div class="p-1 mx-3 my-1 w-full bg-cyan-200 rounded">Medicine name</div>
-              <div class="p-1 mx-3 my-1 w-full bg-cyan-200 rounded">Medicine name</div><div class="p-1 mx-3 my-1 w-full bg-cyan-200 rounded">Medicine name</div>
-              <div class="p-1 mx-3 my-1 w-full bg-cyan-200 rounded">Medicine name</div>
-              <div class="p-1 mx-3 my-1 w-full bg-cyan-200 rounded">Medicine name</div>
-              <div class="p-1 mx-3 my-1 w-full bg-cyan-200 rounded">Medicine name</div>
-          </div>
-            <div class="flex justify-between items-center my-2">
-              <input type="text" class="w-1/2 border-b-black border-b-2 my-2 mx-2 transition:ease-out duration-300 focus:outline-none focus:w-2/3" placeholder="insert medicine name">
-                <button class="bg-green-300 w-2/3 sm:px-5 py-2 sm:mx-5 hover:bg-cyan-200 rounded-full">Add to MyWatchList</button>
-            </div>
+    <!-- <form class="min-h-96 bg-green-500"> -->
+    <div class="flex flex-col md:flex-row justify-between z-0 w-11/12 mx-auto mt-10 h-3/4 py-3 mb-10">
+        <div class="flex flex-col relative justify-start z-10 items-center md:w-1/2 rounded-xl shadow-2xl py-3 px-1 md:h-full">
+            <div class="topic">MyWatchList</div>
+            <div id="watchlistMedicines" class="flex flex-col justify-start items-center w-11/12 rounded-xl p-3">
+                <form onclick="handleWatchlistClick()"  th:each="${medicine:medicines}" action="watchlist/remove" class="cursor-pointer w-full my-1 flex flex-between items-center bg-cyan-200">
+                    <div class="p-1 mx-3 my-1 rounded" th:text="${medicine.name}">Medicine name</div>
+                    <input type="hidden" name="medicine" th:value="${medicine.name}">
+                    <div class="ml-auto flex justify-end items-center">
+                        <button formaction="watchlist/search" class="mx-1 ml-auto border-red-500 border-opacity-50 rounded-full px-2 mx-3 hover:text-white"><img class="w-7 hover:w-8" src="../static/images/search.png" alt=""></button>
+                        <button type="submit" class="mx-1 ml-auto border-red-500 border-opacity-50 rounded-full hover:bg-red-500 hover:text-white"><img class="w-7" src="../static/images/minus.png" alt=""></button>
+                    </div>
+                </form>
         </div>
 
-        <div class=" md:w-1/2 flex flex-col items-center rounded-xl shadow-2xl md:mx-5 my-10 md:my-0 h-96 md:h-full">
+        <form action="watchlist/add" class="flex flex-col sm:flex-row justify-between items-center m-2 mx-5 px-10 absolute bottom-0 w-11/12 bg-white">
+            <input type="text" class="w-1/2 border-b-black border-b-2 my-2 mx-2 transition:ease-out duration-300 focus:outline-none focus:w-2/3" placeholder="insert medicine name">
+            <button type="submit" class="bg-green-300 w-1/2 sm:px-5 py-1 sm:mx-5 hover:bg-cyan-200 rounded-full">Add to MyWatchList</button>
+        </form>
+    </div>
+
+        <div id="searchResult" class="md:w-1/2 flex flex-col items-center rounded-xl shadow-2xl md:mx-5 my-10 md:my-0">
           <div class="topic">Results</div>
-          <div class="flex flex-col justify-between items-center hover:overflow-y-scroll overflow-hidden overflow-x-hidden">
-          <div class="flex flex-col justify-between items-center w-11/12 rounded-xl my-2 bg-cyan-100">
-              <div class="ml-3">Pharmacy name</div>
+          <div class="flex flex-col justify-between items-center w-full">
+            <div th:each="${pharmacy:pharmacies}" class="flex flex-col justify-between items-center w-11/12 rounded-xl my-2 bg-cyan-100">
+                <div class="ml-3" th:text="${pharmacy.name}"></div>
+                <div class="flex justify-between items-center w-full rounded-xl">
+                    <div class="flex flex-col justify-center items-center rounded-xl m-2">
+                        <p th:text="${pharmacy.address}"></p>
+                    </div>
+                    <div class="overflow-hidden w-1/3 h-32 rounded-xl mt-0 m-3"><iframe src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com/divi-discount/"></a><br><a href="https://www.embedgooglemap.net"></a>
+                </div>
+                </div>
+            </div>
+<div th:each="${pharmacy:pharmacies}" class="flex flex-col justify-between items-center w-11/12 rounded-xl my-2 bg-cyan-100">
+              <div class="ml-3" th:text="${pharmacy.name}"></div>
               <div class="flex justify-between items-center w-full rounded-xl">
                   <div class="flex flex-col justify-center items-center rounded-xl m-2">
-                      <p>Name of the medicine</p>
-                      <p>Address of the pharmacy</p>
+                      <p th:text="${pharmacy.address}"></p>
                   </div>
                   <div class="overflow-hidden w-1/3 h-32 rounded-xl mt-0 m-3"><iframe src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com/divi-discount/"></a><br><a href="https://www.embedgooglemap.net"></a>
               </div>
               </div>
           </div>
-  
-          <div class="flex flex-col justify-between items-center w-11/12 rounded-xl my-2 bg-cyan-100">
-              <div class="ml-3">Pharmacy name</div>
-              <div class="flex justify-between items-center w-full rounded-xl">
-                  <div class="flex flex-col justify-center items-center rounded-xl m-2">
-                      <p>Name of the medicine</p>
-                      <p>Address of the pharmacy</p>
-                  </div>
-                  <div class="overflow-hidden w-1/3 h-32 rounded-xl mt-0 m-3"><iframe src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com/divi-discount/"></a><br><a href="https://www.embedgooglemap.net"></a></div>
-              </div>
-          </div>
-  
-          <div class="flex flex-col justify-between items-center w-11/12 rounded-xl my-2 bg-cyan-100">
-              <div class="ml-3">Pharmacy name</div>
-              <div class="flex justify-between items-center w-full rounded-xl">
-                  <div class="flex flex-col justify-center items-center rounded-xl m-2">
-                      <p>Name of the medicine</p>
-                      <p>Address of the pharmacy</p>
-                  </div>
-                  <div class="overflow-hidden w-1/3 h-32 rounded-xl mt-0 m-3"><iframe src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com/divi-discount/"></a><br><a href="https://www.embedgooglemap.net"></a>
-              </div>
-              </div>
-          </div>
+          <div th:each="${pharmacy:pharmacies}" class="flex flex-col justify-between items-center w-11/12 rounded-xl my-2 bg-cyan-100">
+            <div class="ml-3" th:text="${pharmacy.name}"></div>
+            <div class="flex justify-between items-center w-full rounded-xl">
+                <div class="flex flex-col justify-center items-center rounded-xl m-2">
+                    <p th:text="${pharmacy.address}"></p>
+                </div>
+                <div class="overflow-hidden w-1/3 h-32 rounded-xl mt-0 m-3"><iframe src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com/divi-discount/"></a><br><a href="https://www.embedgooglemap.net"></a>
+            </div>
+            </div>
         </div>
+        <div th:each="${pharmacy:pharmacies}" class="flex flex-col justify-between items-center w-11/12 rounded-xl my-2 bg-cyan-100">
+            <div class="ml-3" th:text="${pharmacy.name}"></div>
+            <div class="flex justify-between items-center w-full rounded-xl">
+                <div class="flex flex-col justify-center items-center rounded-xl m-2">
+                    <p th:text="${pharmacy.address}"></p>
+                </div>
+                <div class="overflow-hidden w-1/3 h-32 rounded-xl mt-0 m-3"><iframe src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com/divi-discount/"></a><br><a href="https://www.embedgooglemap.net"></a>
+            </div>
+            </div>
+        </div>
+        <div th:each="${pharmacy:pharmacies}" class="flex flex-col justify-between items-center w-11/12 rounded-xl my-2 bg-cyan-100">
+            <div class="ml-3" th:text="${pharmacy.name}"></div>
+            <div class="flex justify-between items-center w-full rounded-xl">
+                <div class="flex flex-col justify-center items-center rounded-xl m-2">
+                    <p th:text="${pharmacy.address}"></p>
+                </div>
+                <div class="overflow-hidden w-1/3 h-32 rounded-xl mt-0 m-3"><iframe src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com/divi-discount/"></a><br><a href="https://www.embedgooglemap.net"></a>
+            </div>
+            </div>
+        </div>
+        <div th:each="${pharmacy:pharmacies}" class="flex flex-col justify-between items-center w-11/12 rounded-xl my-2 bg-cyan-100">
+            <div class="ml-3" th:text="${pharmacy.name}"></div>
+            <div class="flex justify-between items-center w-full rounded-xl">
+                <div class="flex flex-col justify-center items-center rounded-xl m-2">
+                    <p th:text="${pharmacy.address}"></p>
+                </div>
+                <div class="overflow-hidden w-1/3 h-32 rounded-xl mt-0 m-3"><iframe src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com/divi-discount/"></a><br><a href="https://www.embedgooglemap.net"></a>
+            </div>
+            </div>
+        </div>
+        <div th:each="${pharmacy:pharmacies}" class="flex flex-col justify-between items-center w-11/12 rounded-xl my-2 bg-cyan-100">
+            <div class="ml-3" th:text="${pharmacy.name}"></div>
+            <div class="flex justify-between items-center w-full rounded-xl">
+                <div class="flex flex-col justify-center items-center rounded-xl m-2">
+                    <p th:text="${pharmacy.address}"></p>
+                </div>
+                <div class="overflow-hidden w-1/3 h-32 rounded-xl mt-0 m-3"><iframe src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com/divi-discount/"></a><br><a href="https://www.embedgooglemap.net"></a>
+            </div>
+            </div>
+        </div>
+</div>
       </div>
       
     </div>

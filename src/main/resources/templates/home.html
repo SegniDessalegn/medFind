@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html 
-	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	lang="en"
->
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org"
+lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -12,78 +10,82 @@
 			href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css"
 			rel="stylesheet"
 		/> -->
-		<!-- <link rel="stylesheet" href="../static/css/style.tailwind.css"> -->
+		<link rel="stylesheet" th:href="@{/css/style.build.tailwind.css}">
+		<link rel="stylesheet" th:href="@{/css/style.dev.tailwind.css}">
 		<!-- <script src="https://cdn.tailwindcss.com"></script> -->
-		<link rel="stylesheet" th:href="@{/css/style.build.tailwind.css}" />
-		<link rel="stylesheet" th:href="@{/css/style.dev.tailwind.css}" />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Russo+One&display=swap" rel="stylesheet">
 		<title>Home</title>
 	</head>
-<body onresize="resize()">
-	<div class="nav flex justify-between text-lg bg-lightgreen p-3 h-min sticky top-0">
-		<div class="logo"><span class="text-white font-bold font-sans">med</span><span class="text-darkgreen font-bold font-sans">Find</span></div>
-		<div>
-		<div class="block sm:hidden"><img onclick="navDropDown()"  class="h-7 ml-auto" src="/src/main/resources/static/images/ui.png"alt=""/></div>
-		<div id="dropdown" class="links sm:flex justify-around hidden font-bold font-sans text-cyan-700">
-			<div><a href="#" class="decoration-none ml-3 text-white">Home</a></div>
-			<div><a href="#" class="decoration-none ml-3">Send request</a></div>
-			<div><a href="#" class="decoration-none ml-3">Wachlist</a></div>
-			<div><a href="#" class="decoration-none ml-3">Contact us</a></div>
-		</div></div>
-	</div>
-
-
-<div class="justify-center items-center mt-40">
-	<div id="logo-large" class="font-bold m-10 text-center md:text-8xl text-6xl"><span class="text-lightgreen">med</span><span class="text-darkgreen">Find</span></div>
-		<div class="col-span-5 grow">
-			<form class="flex flex-col justify-center items-center ">
-				<input type="text" class="w-1/2  transition:ease-out duration-300 border-b border-blue-500 focus:outline-0  focus:text-blue-900 focus:w-2/3" placeholder='Type your medicine here'></input>
-			<div class="w-2/3" id="suggestions">
-			</div>
-			</form>
-		</div>
-		<div class="ml-auto mr-auto md:w-2/3 w-1/2 flex justify-around sm:flex-row flex-col items-center">
-				<button class="my-5 mx-2 py-2 px-10 rounded-full bg-cyan-100 hover:bg-cyan-200 hover:drop-shadow-xl border border-cyan-200">search in a region </button>
-				<button class="my-5 mx-2 py-2 px-10 rounded-full bg-cyan-100 hover:bg-cyan-200 hover:drop-shadow-xl border border-cyan-200">search closest to me</button>
-		</div><div>
-	</div>
+<body onresize="resize()" class="p-0 m-0">
+<div class="nav flex justify-between text-lg bg-green-500 p-3">
+	<div class="logo"><span class="text-white font-bold font-sans">med</span><span class="text-cyan-700 font-bold font-sans">Find</span></div>
+	<div>
+	<div class="block sm:hidden"><img onclick="navDropDown()"  class="h-7 ml-auto" src="/src/main/resources/static/images/ui.png"alt=""/></div>
+	<div id="dropdown" class="links sm:flex justify-around hidden font-bold font-sans text-cyan-700">
+		<div><a href="#" class="hover:text-white transition-ease-in duration-500 decoration-none ml-3 text-white">Home</a></div>
+		<div><a href="#" class="hover:text-white transition-ease-in duration-500 decoration-none ml-3">Send request</a></div>
+		<div><a href="#" class="hover:text-white transition-ease-in duration-500 decoration-none ml-3">Wachlist</a></div>
+		<div><a href="#" class="hover:text-white transition-ease-in duration-500 decoration-none ml-3">Contact us</a></div>
+	</div></div>
 </div>
 
 
-<footer class="bg-lightgreen flex w-full h-14 items-center justify-between fixed bottom-0 left-0">
-	<p class="ml-8 text-2xl">privacy policy</p>
-	<div class="flex justify-end">
-		<img
-			class="h-8 m-3"
-			src="/src/main/resources/static/images/gmail.png"
-			alt=""
-		/>
-		<img
-			class="h-8 m-3"
-			src="/src/main/resources/static/images/github.png"
-			alt=""
-		/>
-		<img
-			class="h-8 m-3"
-			src="/src/main/resources/static/images/linkedin.png"
-			alt=""
-		/>
-		<img
-			class="h-8 m-3"
-			src="/src/main/resources/static/images/telegram.png"
-			alt=""
-		/>
-		<img
-			class="h-8 m-3 mr-5"
-			src="/src/main/resources/static/images/facebook.png"
-			alt=""
-		/>
-	</div>
-	<script src="../static/js/home.js"></script>
+<div class="justify-center items-center mt-40">
+    <div id="logo-large" class="text-lg font-bold m-10 text-center md:text-8xl text-6xl"><span class="text-cyan-300">med</span><span>Find</span></div>
+    <div class="col-span-5 grow">
+        <form action="region" id="form123" name="form" class="flex flex-col justify-center items-center ">
+            <input name="inputField" type="text" class="w-1/2  transition:ease-out duration-300 border-b border-blue-500 focus:outline-0  focus:text-blue-900 focus:w-2/3" placeholder='Type your medicine here'></input>
+            <div class="w-2/3" id="suggestions"></div>
+
+            <div class="ml-auto mr-auto w-2/3 flex justify-around sm:flex-row flex-col items-center">
+                <input type="hidden" id="xhidden" name="Xlocation" value=""></input>
+                <input type="hidden" id="yhidden" name="Ylocation" value=""></input>
+                <div id="dd" class="relative flex flex-col justify-center items-center h-10 bg-blue-500 hover:bg-yellow-500">
+                    <button id="regionOptions" class="my-5 mx-2 py-2 px-6 md:px-10 rounded-full bg-cyan-100 hover:bg-cyan-200 hover:drop-shadow-xl border border-cyan-200">search in a region </button>
+                    <div id="list"  class="absolute top-10 h-72 overflow-y-scroll overflow-x-hidden w-full bg-red-500">
+                        <button th:each="region : ${regions}" th:name="region" th:value="${region.name}" th:text="${region.name}" class="region w-full my-1 mr-5 mx-1 p-1 bg-cyan-100 hover:bg-cyan-200 hover:drop-shadow-xl border border-cyan-200"></button>
+                    </div>
+                </div>
+				<button id="byLocation" class="my-5 mx-2 py-2 px-6 md:px-10 rounded-full bg-cyan-100 hover:bg-cyan-200 hover:drop-shadow-xl border border-cyan-200">search closest to me</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<footer class="bg-green-300 flex w-full h-14 items-center justify-between fixed bottom-0 left-0">
+    <p class="ml-8 text-2xl">privacy policy</p>
+    <div class="flex justify-end">
+        <img
+                class="h-8 m-3"
+                src="/src/main/resources/static/images/gmail.png"
+                alt=""
+        />
+        <img
+                class="h-8 m-3"
+                src="/src/main/resources/static/images/github.png"
+                alt=""
+        />
+        <img
+                class="h-8 m-3"
+                src="/src/main/resources/static/images/linkedin.png"
+                alt=""
+        />
+        <img
+                class="h-8 m-3"
+                src="/src/main/resources/static/images/telegram.png"
+                alt=""
+        />
+        <img
+                class="h-8 m-3 mr-5"
+                src="/src/main/resources/static/images/facebook.png"
+                alt=""
+        />
+    </div>
 </footer>
 
-		<script src="../static/js/home.js"></script>
-	</body>
+<script src="../static/js/home.js"></script>
+</body>
 </html>
