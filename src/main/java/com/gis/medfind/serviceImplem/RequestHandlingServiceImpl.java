@@ -16,7 +16,10 @@ import com.gis.medfind.service.RequestHandlingService;
 import com.gis.medfind.utils.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+
+@Service
 public class RequestHandlingServiceImpl implements RequestHandlingService {
 
     @Autowired
@@ -62,6 +65,11 @@ public class RequestHandlingServiceImpl implements RequestHandlingService {
     @Override
     public void rejectRequest(Long rq){
         requestRepo.delete(requestRepo.getById(rq));
+    }
+
+    @Override
+    public List<Request> getAllRequests() {
+        return requestRepo.findAll();
     }
 
 }

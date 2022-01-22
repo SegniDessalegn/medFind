@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,7 +36,7 @@ public class User {
     @Column(name = "last_name", nullable = true, length = 25)
     private String lastName;
      
-    @ManyToMany 
+    @ManyToMany(fetch = FetchType.EAGER) 
     @JoinTable( 
         name = "users_roles", 
         joinColumns = @JoinColumn(

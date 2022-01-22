@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface WatchListRepository extends JpaRepository<WatchList, Long> {
-    @Query(value ="SELECT wl FROM watch_list wl WHERE wl.fk_owner =:id", nativeQuery=true)
+    @Query(value ="SELECT wl.watch_list_id, * FROM watch_list wl WHERE wl.fk_owner =:id", nativeQuery=true)
     public WatchList findWatchListByUserId(@Param("id") Long userId);
 }
 

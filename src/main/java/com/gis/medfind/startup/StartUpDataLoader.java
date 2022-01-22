@@ -75,8 +75,8 @@ public class StartUpDataLoader implements ApplicationListener<ContextRefreshedEv
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
  
-        //if (started == true || roleRepo.count() > 0)
-        //    return;
+        if (started == true || roleRepo.count() > 0)
+            return;
         
         Privilege readPrivilege = getOrCreatePrivilegeIfNotFound("READ");
 
@@ -96,9 +96,9 @@ public class StartUpDataLoader implements ApplicationListener<ContextRefreshedEv
             userPrivileges.add(writePrivilege);
 
 
-        getOrCreateRoleIfNotFound("ADMIN_ROLE", adminPrivileges);
-        getOrCreateRoleIfNotFound("USER_ROLE", userPrivileges);
-        getOrCreateRoleIfNotFound("STAFF_ROLE", staffPrivileges);
+        getOrCreateRoleIfNotFound("ADMIN", adminPrivileges);
+        getOrCreateRoleIfNotFound("USER", userPrivileges);
+        getOrCreateRoleIfNotFound("STAFF", staffPrivileges);
         //...other roles
 
 
@@ -112,7 +112,7 @@ public class StartUpDataLoader implements ApplicationListener<ContextRefreshedEv
             List<Role> role = new ArrayList<>();
                 role.add(adminRole);
             user.setRoles(role);
-        if(userRepo.findByEmail(user.getEmail())==null)
+        if(userRepo.findUserByEmail(user.getEmail())== null)
             userRepo.save(user);
 
         this.loadMedicines();
@@ -297,7 +297,7 @@ public class StartUpDataLoader implements ApplicationListener<ContextRefreshedEv
                     System.out.println("------->>>"+surround.getName());
                 }else{System.out.println("----------->>>null");}
                 pharm = pharmRepo.save(pharm);
-                pharm.setOwner(userRepo.findByEmail("amhaznif@gmail.com"));
+                pharm.setOwner(userRepo.findUserByEmail("amhaznif@gmail.com"));
                     Server pharmServer = new Server();
                         pharmServer.setDatabaseName("drugstore");
                         pharmServer.setDrugInventory("Table_"+pharm.getId());

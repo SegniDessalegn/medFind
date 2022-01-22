@@ -3,7 +3,6 @@ package com.gis.medfind.entity;
 import lombok.Data;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -29,7 +28,7 @@ public class WatchList{
     private int id;
     
     @Column(name = "creation_date")
-    private Date creationDate;
+    private String creationDate;
     
     @OneToOne
     @JoinColumn(name = "fk_owner")

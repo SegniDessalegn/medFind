@@ -38,7 +38,7 @@ public class WatchListServiceImplTest {
     @Test
     public void testGetWatchList() {
         WatchList watchlist = new WatchList();
-        watchlist.setCreationDate(new Date());
+        watchlist.setCreationDate(new Date().toString());
             List<Medicine> medicines = new ArrayList<>();
             Medicine med1 = medRepo.save(new Medicine());
             Medicine med2 = medRepo.save(new Medicine());
