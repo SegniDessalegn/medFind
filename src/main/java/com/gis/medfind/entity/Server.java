@@ -29,7 +29,7 @@ public class Server {
     @Column(name = "server_hostname",nullable = true, unique = false)
     private String host;
 
-    @Column(name = "server_listening_port", nullable = false)
+    @Column(name = "server_listening_port", nullable = true)
     private String port;
 
     public enum Engine{

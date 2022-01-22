@@ -38,7 +38,7 @@ public class JsonTest {
         InputStream targetStream = new ByteArrayInputStream(geojson.getBytes());
         Point point2 = objectMapper.readValue(targetStream, Point.class);
 
-        assertThat(point).isEqualTo(point2);
+        assertThat(point.equals(point2)).isEqualTo(true);
     }
     
 }

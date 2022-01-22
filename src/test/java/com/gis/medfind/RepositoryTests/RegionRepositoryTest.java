@@ -24,8 +24,8 @@ public class RegionRepositoryTest {
     @Autowired
     private TestEntityManager entityManager;
 
-    //@Autowired
-    private GeometryFactory geometryFactory = new GeometryFactory();
+    @Autowired
+    private GeometryFactory geometryFactory;
      
     @Autowired
     private RegionRepository repo;
@@ -45,6 +45,6 @@ public class RegionRepositoryTest {
 
         Region exist_rg = entityManager.find(Region.class, rg.getId());
         assertThat(exist_rg.getName()).isEqualTo(saved_rg.getName());        
-        assertThat(exist_rg.getBoundary()).isEqualTo(saved_rg.getBoundary());        
+        assertThat(exist_rg.getBoundary().equals(saved_rg.getBoundary())).isEqualTo(true);        
     }
 }

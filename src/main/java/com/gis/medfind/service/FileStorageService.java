@@ -9,6 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 public interface FileStorageService {
     public void initialize();
 
+    public void initialize(String subdir);
+
     public void upload(MultipartFile file);
 
     public Resource getFile(String filename);

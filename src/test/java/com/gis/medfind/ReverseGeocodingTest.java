@@ -16,8 +16,7 @@ public class ReverseGeocodingTest {
     
     @Test
     public void testReverseGeocoder() {
-        System.out.println(utils.reverseGeocode(9.032646402656406, 38.75419284044014));
-        
+        System.out.println(utils.reverseGeocode(9.032646402656406, 38.75419284044014)); 
     }
 
     

@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class FileStorageServiceImpl implements FileStorageService{
     
-    private final Path root = Paths.get("uploads/license");
+    private Path root = Paths.get("uploads/license");
 
     public FileStorageServiceImpl(){
         this.initialize();
@@ -37,12 +37,24 @@ public class FileStorageServiceImpl implements FileStorageService{
     }
 
     @Override
+    public void initialize(String subdir){
+        this.root = Paths.get(root.getRoot().toString()+"/"+subdir); 
+        try{
+            Files.createDirectory(root);
+        }
+        catch(IOException e){
+            System.out.print(e.getMessage());
+            System.out.print("Initialization Failed");
+        }
+    }
+
+    @Override
     public void upload(MultipartFile file){
         try{
             Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
         }catch(IOException e){
             System.out.print(e.getMessage());
-            System.out.print("Initialization Failed");
+            System.out.print("File uploading failed!");
         }
     }
 

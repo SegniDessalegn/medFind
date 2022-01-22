@@ -10,6 +10,7 @@ import com.gis.medfind.repository.PharmacyRepository;
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.PrecisionModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
@@ -28,8 +29,7 @@ public class PharmacyRepositoryTest {
     @Autowired
     private PharmacyRepository pharmRepo;
      
-    @Autowired
-    private GeometryFactory geometryFactory;
+    private GeometryFactory geometryFactory = new GeometryFactory(new PrecisionModel(), 4326);
      
     @Test
     public void testCreatePharmacy() {
@@ -47,19 +47,5 @@ public class PharmacyRepositoryTest {
         
         assertThat(pharm.getName()).isEqualTo(existPharmacy.getName());
         
-    }
-
-    @Test
-    public void testPharmacyConnection(){
-        /**
-        Pharmacy pharm = new Pharmacy();
-        Coordinate loc = new Coordinate(52.003, 25.478);
-        pharm.setLocation(geometryFactory.createPoint(loc));
-        pharm.setAddress("Addis Ababa");
-        pharm.setName("ST. Markos");
-        pharm.setOwner(new User());
-        pharm.setPharmacyServer(new Server());
-        Pharmacy savedPharmacy = pharmRepo.save(pharm);
-        **/
     }
 }

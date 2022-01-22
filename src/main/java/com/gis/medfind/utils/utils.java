@@ -59,6 +59,8 @@ public class utils {
         String endpointUrl = "https://nominatim.openstreetmap.org/";
         MapPoint mapPoint = new MapPoint().buildMapPoint(lat, lon);
         Address address = NominatimAPI.with(endpointUrl).getAddressFromMapPoint(mapPoint);
-        return address.getDisplayName();
+        if(address != null)
+            return address.getDisplayName();
+        return "";
     }
 }
