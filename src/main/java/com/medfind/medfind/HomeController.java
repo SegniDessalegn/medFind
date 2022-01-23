@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
    List<Pharmacy> pharmacies = Arrays.asList(
-   new Pharmacy(1,"first","32.232,54.23423"),new Pharmacy(2,"second","37.232,59.23423"),new Pharmacy(3,"third","20.232,74.23423"));
+   new Pharmacy(1,"first","8.9813972,38.7578696"),new Pharmacy(2,"second","8.9719971,38.7317747"),new Pharmacy(3,"third","8.9719971,38.7317747"));
 
    @GetMapping("/")
    public String home(Model model) {
