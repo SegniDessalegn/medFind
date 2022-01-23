@@ -54,7 +54,7 @@ public class StartUpDataLoader implements ApplicationListener<ContextRefreshedEv
 
     @Autowired
     private GeometryFactory geometryFactory;
-    
+
     @Autowired
     private PasswordEncoder passwordEncoder;
     
@@ -75,8 +75,8 @@ public class StartUpDataLoader implements ApplicationListener<ContextRefreshedEv
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
  
-        //if (started == true || roleRepo.count() > 0)
-        //    return;
+        if (started == true || roleRepo.count() > 0)
+            return;
         
         Privilege readPrivilege = getOrCreatePrivilegeIfNotFound("READ");
 
@@ -96,9 +96,9 @@ public class StartUpDataLoader implements ApplicationListener<ContextRefreshedEv
             userPrivileges.add(writePrivilege);
 
 
-        getOrCreateRoleIfNotFound("ADMIN_ROLE", adminPrivileges);
-        getOrCreateRoleIfNotFound("USER_ROLE", userPrivileges);
-        getOrCreateRoleIfNotFound("STAFF_ROLE", staffPrivileges);
+        getOrCreateRoleIfNotFound("ADMIN", adminPrivileges);
+        getOrCreateRoleIfNotFound("USER", userPrivileges);
+        getOrCreateRoleIfNotFound("STAFF", staffPrivileges);
         //...other roles
 
 
