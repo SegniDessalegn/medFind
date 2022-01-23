@@ -427,6 +427,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .fixed {
   position: fixed;
 }
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
 .sticky {
   position: -webkit-sticky;
   position: sticky;
@@ -440,17 +446,26 @@ Ensure the default browser behavior of the `hidden` attribute.
 .left-0 {
   left: 0px;
 }
+.top-10 {
+  top: 2.5rem;
+}
 .z-50 {
   z-index: 50;
 }
-.z-20 {
-  z-index: 20;
+.z-0 {
+  z-index: 0;
+}
+.z-10 {
+  z-index: 10;
 }
 .col-span-5 {
   grid-column: span 5 / span 5;
 }
 .m-3 {
   margin: 0.75rem;
+}
+.m-0 {
+  margin: 0px;
 }
 .m-10 {
   margin: 2.5rem;
@@ -484,13 +499,17 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
-.mx-4 {
-  margin-left: 1rem;
-  margin-right: 1rem;
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 .mx-1 {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
+}
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 .my-2 {
   margin-top: 0.5rem;
@@ -508,17 +527,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 0.75rem;
   margin-right: 0.75rem;
 }
-.my-1 {
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
-}
 .my-14 {
   margin-top: 3.5rem;
   margin-bottom: 3.5rem;
 }
-.my-0 {
-  margin-top: 0px;
-  margin-bottom: 0px;
+.mx-5 {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
 }
 .ml-auto {
   margin-left: auto;
@@ -603,17 +618,20 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-14 {
   height: 3.5rem;
 }
+.h-10 {
+  height: 2.5rem;
+}
+.h-72 {
+  height: 18rem;
+}
 .h-8 {
   height: 2rem;
 }
 .h-2\/4 {
   height: 50%;
 }
-.h-32 {
-  height: 8rem;
-}
-.h-10 {
-  height: 2.5rem;
+.h-36 {
+  height: 9rem;
 }
 .h-full {
   height: 100%;
@@ -624,17 +642,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-96 {
   height: 24rem;
 }
-.h-1\/5 {
-  height: 20%;
-}
-.h-1\/6 {
-  height: 16.666667%;
-}
-.h-36 {
-  height: 9rem;
-}
-.h-72 {
-  height: 18rem;
+.h-32 {
+  height: 8rem;
 }
 .max-h-40 {
   max-height: 10rem;
@@ -665,11 +674,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: -moz-fit-content;
   width: fit-content;
 }
+.w-10\/12 {
+  width: 83.333333%;
+}
 .w-1\/3 {
   width: 33.333333%;
 }
-.w-10\/12 {
-  width: 83.333333%;
+.w-7 {
+  width: 1.75rem;
 }
 .grow {
   flex-grow: 1;
@@ -721,11 +733,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .overflow-hidden {
   overflow: hidden;
 }
-.overflow-scroll {
-  overflow: scroll;
-}
 .overflow-x-hidden {
   overflow-x: hidden;
+}
+.overflow-y-scroll {
+  overflow-y: scroll;
 }
 .rounded-lg {
   border-radius: 0.5rem;
@@ -757,9 +769,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-b-2 {
   border-bottom-width: 2px;
 }
-.bg-lightgreen {
-  --tw-bg-opacity: 1;
-  background-color: rgb(134 215 220 / var(--tw-bg-opacity));
+.border-opacity-50 {
+  --tw-border-opacity: 0.5;
 }
 .bg-no-repeat {
   background-repeat: no-repeat;
@@ -772,6 +783,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .p-1 {
   padding: 0.25rem;
+}
+.p-0 {
+  padding: 0px;
 }
 .p-2 {
   padding: 0.5rem;
@@ -787,6 +801,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 .py-5 {
   padding-top: 1.25rem;
@@ -811,6 +829,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .px-1 {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
+}
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 .text-center {
   text-align: center;
@@ -841,14 +867,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .font-bold {
   font-weight: 700;
 }
-.text-darkgreen {
-  --tw-text-opacity: 1;
-  color: rgb(9 112 118 / var(--tw-text-opacity));
-}
-.text-lightgreen {
-  --tw-text-opacity: 1;
-  color: rgb(134 215 220 / var(--tw-text-opacity));
-}
 .shadow-2xl {
   --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
@@ -862,9 +880,51 @@ Ensure the default browser behavior of the `hidden` attribute.
 .duration-300 {
   transition-duration: 300ms;
 }
+.duration-500 {
+  transition-duration: 500ms;
+}
 
 #logo-large {
 	font-family: "Russo One", sans-serif;
+}
+.logo{
+	transition: 0.2s;
+}
+
+.logo:hover{
+	font-size: larger;
+	cursor: pointer;
+}
+
+#list{
+	display: none !important;
+}
+
+#dd{
+	position: relative !important;
+}
+
+#dd:hover div{
+	display: block !important;
+	/* position: absolute !important; */
+	/* top:-10 !important;
+	left:0; */
+	/* z-index: 394375981237598374; */
+}
+
+#watchlistMedicines{
+	/* z-index: -1; */
+	padding-bottom: 50px !important;
+	height: 50vh !important;
+	overflow: auto !important;
+}
+
+#searchResult{
+	/* z-index: -1; */
+	padding-bottom: 50px !important;
+	height: 100% !important;
+	max-height: 75vh !important;
+	overflow: auto !important;
 }
 
 .file\:mr-4::-webkit-file-upload-button {
@@ -921,6 +981,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1.25rem;
 }
 
+.hover\:w-8:hover {
+  width: 2rem;
+}
+
 .hover\:overflow-y-scroll:hover {
   overflow-y: scroll;
 }
@@ -968,20 +1032,12 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin-bottom: 1rem;
   }
 
-  .sm\:mt-3 {
-    margin-top: 0.75rem;
-  }
-
   .sm\:flex {
     display: flex;
   }
 
   .sm\:hidden {
     display: none;
-  }
-
-  .sm\:h-96 {
-    height: 24rem;
   }
 
   .sm\:w-10\/12 {
@@ -1042,22 +1098,8 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin-bottom: 0px;
   }
 
-  .md\:mx-10 {
-    margin-left: 2.5rem;
-    margin-right: 2.5rem;
-  }
-
-  .md\:my-10 {
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-  }
-
   .md\:mt-20 {
     margin-top: 5rem;
-  }
-
-  .md\:mt-10 {
-    margin-top: 2.5rem;
   }
 
   .md\:inline-block {
@@ -1088,10 +1130,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     width: 50%;
   }
 
-  .md\:w-2\/3 {
-    width: 66.666667%;
-  }
-
   .md\:w-9\/12 {
     width: 75%;
   }
@@ -1100,12 +1138,13 @@ Ensure the default browser behavior of the `hidden` attribute.
     width: 50%;
   }
 
-  .md\:w-full {
-    width: 100%;
-  }
-
   .md\:flex-row {
     flex-direction: row;
+  }
+
+  .md\:px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
   }
 
   .md\:px-16 {
@@ -1148,11 +1187,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   .lg\:mx-52 {
     margin-left: 13rem;
     margin-right: 13rem;
-  }
-
-  .lg\:mx-10 {
-    margin-left: 2.5rem;
-    margin-right: 2.5rem;
   }
 
   .lg\:w-2\/3 {

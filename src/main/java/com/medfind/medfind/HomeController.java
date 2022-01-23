@@ -27,7 +27,7 @@ public class HomeController {
    public String homeResult(Model model) {
       
       model.addAttribute("pharmacies", pharmacies);
-      return "watchList";
+      return "homeResult";
    }
    
 }

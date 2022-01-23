@@ -9,6 +9,9 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <title>Home Result</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+
 		<link rel="stylesheet" th:href="@{/css/style.build.tailwind.css}" />
 		<link rel="stylesheet" th:href="@{/css/style.dev.tailwind.css}" />
 		<link
@@ -32,36 +35,21 @@
 		/>
 		<title>Home</title>
 	</head>
+    <body onresize="resize()">
+        
 	<body onresize="resize()">
-		<div
-			class="nav flex justify-between text-lg bg-green-300 p-3 h-min sticky top-0"
-		>
-			<div class="logo">
-				<span class="text-white font-bold font-sans">med</span
-				><span class="text-cyan-700 font-bold font-sans">Find</span>
-			</div>
-			<div>
-				<div class="block sm:hidden">
-					<img
-						onclick="navDropDown()"
-						class="h-7 ml-auto"
-						src="/src/main/resources/static/images/ui.png"
-						alt=""
-					/>
-				</div>
-				<div
-					id="dropdown"
-					class="links justify-around hidden sm:flex font-bold font-sans text-cyan-700"
-				>
-					<div>
-						<a href="#" class="decoration-none ml-3 text-white">Home</a>
-					</div>
-					<div><a href="#" class="decoration-none ml-3">Send request</a></div>
-					<div><a href="#" class="decoration-none ml-3">Wachlist</a></div>
-					<div><a href="#" class="decoration-none ml-3">Contact us</a></div>
-				</div>
-			</div>
-		</div>
+		<div class="nav flex justify-between text-lg bg-green-300 p-3 h-min sticky top-0">
+            <div class="logo"><span class="text-white font-bold font-sans">med</span><span class="text-cyan-700 font-bold font-sans">Find</span></div>
+            <div>
+            <div class="block sm:hidden"><img onclick="navDropDown()"  class="h-7 ml-auto" src="/src/main/resources/static/images/ui.png"alt=""/></div>
+            <div id="dropdown" class="links justify-around hidden sm:flex font-bold font-sans text-cyan-700">
+                <div><a href="#" class="decoration-none ml-3 text-white">Home</a></div>
+                <div><a href="#" class="decoration-none ml-3">Send request</a></div>
+                <div><a href="#" class="decoration-none ml-3">Watchlist</a></div>
+                <div><a href="#" class="decoration-none ml-3">Contact us</a></div>
+            </div></div>
+        </div>
+		
 
 		<div class="searching mt-5">
 			<div class="flex md:flex-row flex-col justify-around items-center">
@@ -81,7 +69,7 @@
 					<button
 						class="bg-green-300 my-5 sm:my-0 mx-1 px-5 sm:px-5 py-2 sm:mx-5 hover:bg-cyan-200 rounded-full"
 					>
-						Search colesest to me
+						Search closest to me
 					</button>
 				</div>
 			</div>
