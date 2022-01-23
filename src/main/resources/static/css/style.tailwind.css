@@ -10,7 +10,7 @@
 }
 
 .logo:hover{
-	font-size: larger;
+	letter-spacing: 1px;
 	cursor: pointer;
 }
 
@@ -34,7 +34,8 @@
 	/* z-index: -1; */
 	padding-bottom: 50px !important;
 	height: 50vh !important;
-	overflow: auto !important;
+	overflow-y: auto !important;
+	overflow-x: hidden !important;
 }
 
 #searchResult{
@@ -43,4 +44,64 @@
 	height: 100% !important;
 	max-height: 75vh !important;
 	overflow: auto !important;
+}
+
+
+::-webkit-scrollbar {
+	width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+	background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+	background: rgb(0, 242, 255);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+	background: rgb(9, 112, 118);
+}
+
+
+.primary{
+	/* color: rgb(0, 242, 255); */
+	color: #86efac;
+}
+
+.secondary{
+	color: #097076;
+}
+
+.nav{
+	background-color: #86efac !important;
+	color:#097076;
+}
+
+.primary-background{
+	background-color: #86efac !important;
+}
+
+
+.primary-background:hover{
+	background-color: #097076 !important;
+	color: white;
+}
+
+.input-text{
+	border: 0px solid black;
+	border-bottom: 1px solid black;
+	width: 50%;
+	transition: 0.2s;
+}
+
+.input-text:focus{
+	border: 0px solid black !important;
+	border-bottom: 1px solid black !important;
+	width: 60% !important;
+	outline: none;
+}
+
+button:focus{
+	outline:none;
 }

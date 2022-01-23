@@ -46,6 +46,7 @@ var geolocation = (function() {
 
     function _onError (callback, error) {
       alert("to access this service your need to turn on location service, please turn on and retry");
+      windows.history.back();
       callback();
     };
 
