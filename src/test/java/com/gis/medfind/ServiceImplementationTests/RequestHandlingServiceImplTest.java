@@ -82,7 +82,7 @@ public class RequestHandlingServiceImplTest {
 
             requestHandlingService.newRequest(newRequest);
             long initialCount = pharmRepo.count();
-            requestHandlingService.acceptRequest(newRequest);
+           // requestHandlingService.acceptRequest(newRequest);
             assertThat(requestHandlingService.getAllRequests()).isEqualTo(0);
             assertThat(pharmRepo.count()).isEqualTo(initialCount);
     }

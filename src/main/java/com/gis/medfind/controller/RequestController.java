@@ -2,7 +2,11 @@ package com.gis.medfind.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import com.gis.medfind.Forms.RequestForm;
 import com.gis.medfind.entity.Request;
+import com.gis.medfind.serviceImplem.FileStorageServiceImpl;
 import com.gis.medfind.serviceImplem.RequestHandlingServiceImpl;
 
 
@@ -13,26 +17,34 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class RequestController {
+
     @Autowired
     public RequestHandlingServiceImpl requestService;
 
-    @ModelAttribute(name="request")
-    public Request request(){
-        return new Request();
+    @Autowired
+    public FileStorageServiceImpl fileService;
+    @Autowired
+    public RequestForm requestForm;
+
+    @ModelAttribute(name="RequestForm")
+    public RequestForm requestForm(){
+        return requestForm;
     }
+ 
     @GetMapping("/sendRequest")
-    public String sendRequest(Model model){
+    public String sendRequest(){
         return "sendRequest";
     }
     @PostMapping("/sendRequest")
-    public String processRequest(@ModelAttribute Request request, Errors errors){
+    public String processRequest(@Valid @ModelAttribute RequestForm request, Errors errors){
         if (errors.hasErrors()){
             return "sendRequest";
         }
-        requestService.newRequest(request);
+        request.toRequest(requestService,fileService);
         return "RequestSuccess";
     }
     @GetMapping("/handle_request")
@@ -42,8 +54,8 @@ public class RequestController {
         return "validator";
     }
     @PostMapping("handle_request/approve")
-    public String approveRequest(@ModelAttribute Request request){
-        requestService.acceptRequest(request);
+    public String approveRequest(@RequestParam String requestId){
+        requestService.acceptRequest(Long.parseLong(requestId));
         return "validator";
     }
     @PostMapping("handle_request/reject")
