@@ -2,6 +2,9 @@ package com.gis.medfind.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import com.gis.medfind.Forms.searchForm;
 import com.gis.medfind.entity.Pharmacy;
 import com.gis.medfind.repository.RegionRepository;
 import com.gis.medfind.serviceImplem.SearchByRegionServiceImpl;
@@ -25,9 +28,12 @@ public class HomeController {
     @Autowired
     SearchByUserLocationServiceImpl searchloc;
 
+    @Autowired
+    searchForm search;
+
     @ModelAttribute(name="searchForm")
-    public searchForm addSearchForm() {
-        return new searchForm();
+    public searchForm search(){
+        return search;
     }
 
     @GetMapping("/")
@@ -42,14 +48,14 @@ public class HomeController {
         return "home";
     }
     @PostMapping("/home/byRegion")
-    public String processSearchRegion(@ModelAttribute searchForm form, Model model) {
-        List<Pharmacy> pharm = searchReg.findPharmaciesWithInRegion(form.generateRegion().getId(),
-                form.getMedicineName());
+    public String processSearchRegion(@Valid @ModelAttribute searchForm Form, Model model) {
+        List<Pharmacy> pharm = searchReg.findPharmaciesWithInRegion(Form.generateRegion().getId(),
+                Form.getMedicineName());
         model.addAttribute("pharmaList", pharm);
         return "homeResult";
     }
     @PostMapping("/home/byLocation")
-    public String processSearchLocation(@ModelAttribute searchForm form, Model model){
+    public String processSearchLocation(@Valid searchForm form, Model model){
         List<Pharmacy> pharm = searchloc.findPharmaciesByUserLocation(form.getMedicineName(), form.getUserlat(),
                 form.getUserlong());
         model.addAttribute("pharmaList", pharm);

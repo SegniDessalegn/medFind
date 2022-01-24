@@ -43,7 +43,8 @@ public class RequestHandlingServiceImpl implements RequestHandlingService {
     }
     
     @Override
-    public void acceptRequest(Request rq){
+    public void acceptRequest(Long requestId){
+        Request rq = requestRepo.findById(requestId).orElseThrow();
         Pharmacy newPharm = new Pharmacy();
             newPharm.setLocation(rq.getLocation());
             newPharm.setName(rq.getPharmacyName());
