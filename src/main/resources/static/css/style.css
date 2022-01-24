@@ -1,6 +1,6 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 #logo-large {
 	font-family: "Russo One", sans-serif;
@@ -56,7 +56,7 @@
   }
   
   ::-webkit-scrollbar-thumb {
-	background: rgb(0, 242, 255);
+	background: rgb(111, 209, 147);
   }
   
   ::-webkit-scrollbar-thumb:hover {
@@ -66,7 +66,7 @@
 
 .primary{
 	/* color: rgb(0, 242, 255); */
-	color: #86efac;
+	color: rgb(134, 239, 172);
 }
 
 .secondary{
@@ -74,6 +74,10 @@
 }
 
 .nav{
+	background-color: #86efac !important;
+	color:#097076;
+}
+.footer{
 	background-color: #86efac !important;
 	color:#097076;
 }
@@ -104,4 +108,20 @@
 
 button:focus{
 	outline:none;
+}
+
+#splash{
+	/* background-image: url(../images/splash.png);
+	background-size: cover; */
+	position:absolute;
+	top:0px;
+	left:0px;
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+	/* background-image: url(../static/images/splash.png);
+	background-size: cover; */
+}
+body{
+	z-index: 0;
 }

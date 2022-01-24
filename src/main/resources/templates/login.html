@@ -41,7 +41,7 @@
 						class="links sm:flex justify-around hidden font-bold font-sans text-cyan-700"
 					>
 						<div>
-							<a href="#" class="decoration-none ml-3 text-white">Home</a>
+							<a href="#" class="decoration-none ml-3">Home</a>
 						</div>
 						<div><a href="#" class="decoration-none ml-3">Send request</a></div>
 						<div><a href="#" class="decoration-none ml-3">Wachlist</a></div>
@@ -57,15 +57,17 @@
 		>
 			<h1 class="text-center text-2xl sm:text-3xl m-2">Log in</h1>
 
-			<from class="flex flex-col">
+			<from class="flex flex-col" >
 				<input
 					class="m-3 sm:m-5 border-b-2 focus:outline-none"
+					name="email"
 					type="email"
 					placeholder="Enter your email"
 				/>
 
 				<input
 					class="m-3 sm:m-5 border-b-2 focus:outline-none"
+					name="password"
 					type="password"
 					placeholder="Passwond"
 				/>
@@ -73,6 +75,7 @@
 				<a href="" class="text-center">Forgot password?</a>
 
 				<button
+				type="submit"
 					class="bg-green-200 m-auto my-2 sm:my-4 w-fit p-2 px-16 rounded-full"
 				>
 					Login
@@ -81,6 +84,7 @@
 				<div class="text-center">Don't have an account?</div>
 
 				<button
+				formaction="register"
 					class="bg-green-200 m-auto my-2 sm:my-4 w-fit p-2 px-12 rounded-full"
 				>
 					Create Account

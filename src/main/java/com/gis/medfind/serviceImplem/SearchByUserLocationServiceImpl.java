@@ -25,7 +25,7 @@ public class SearchByUserLocationServiceImpl implements SearchByUserLocationServ
         List<Pharmacy> pharmsCloseToUserWithMedicine = new ArrayList<>();
         for(Pharmacy pharm: pharmsCloseToUser){
             if(pharm.checkMedicine(medicineName)){
-                System.out.println(pharm.getName());
+                // System.out.println(pharm.getName());
                 pharmsCloseToUserWithMedicine.add(pharm);
             }
         }

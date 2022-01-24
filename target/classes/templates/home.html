@@ -12,18 +12,19 @@ lang="en">
 		/> -->
 		<!-- <link rel="stylesheet" th:href="@{/css/style.build.tailwind.css}">
 		<link rel="stylesheet" th:href="@{/css/style.dev.tailwind.css}"> -->
-        <link rel="stylesheet" href="../static/css/tailwind.css">
-        <link rel="stylesheet" href="../static/css/style.tailwind.css">
+        <link rel="stylesheet" th:href="@{/css/tailwind.css}">
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+		
         <!-- <script src="https://cdn.tailwindcss.com"></script> -->
         <!-- <link rel="stylesheet" href="../static/css/tailwind.css"> -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Russo+One&display=swap" rel="stylesheet">
-		<title>Home</title>
+		<title>medFind</title>
 	</head>
 <body onresize="resize()" class="p-0 m-0">
 <div class="nav flex justify-between text-lg p-3">
-	<div class="logo"><span class="text-white font-bold font-sans">med</span><span class="text-cyan-700 font-bold font-sans">Find</span></div>
+	<a href="./home.html" class="logo"><span class="text-white font-bold font-sans">med</span><span class="text-cyan-700 font-bold font-sans">Find</span></a>
 	<div>
 	<div class="block sm:hidden"><img onclick="navDropDown()"  class="h-7 ml-auto" src="/src/main/resources/static/images/ui.png"alt=""/></div>
 	<div id="dropdown" class="links sm:flex justify-around hidden font-bold font-sans text-cyan-700">
@@ -38,31 +39,17 @@ lang="en">
 <div class="justify-center items-center mt-40">
     <div id="logo-large" class="text-lg font-bold m-10 text-center md:text-8xl text-6xl"><span class="primary">med</span><span class="secondary">Find</span></div>
     <div class="col-span-5 grow">
-        <form onsubmit="event.preventDefault();" action="region" id="form123" name="form" class="flex flex-col justify-center items-center ">
-            <input class="input-text" name="inputField" type="text" class="w-1/2  transition:ease-out duration-300 border-b border-blue-500 focus:outline-0  focus:text-blue-900 focus:w-2/3" placeholder='Type your medicine here'></input>
+        <form method="POST" th:object="${searchForm}" onsubmit="event.preventDefault();" th:action="@{/region}" id="form123" name="form" class="flex flex-col justify-center items-center ">
+            <input th:field="*{medicineName}" type="text" class="input-text w-1/2  transition:ease-out duration-300 border-b border-blue-500 focus:outline-0  focus:text-blue-900 focus:w-2/3" placeholder='Type your medicine here'></input>
             <div class="w-2/3" id="suggestions"></div>
-
             <div class="ml-auto mr-auto w-2/3 flex justify-around sm:flex-row flex-col items-center">
-                <input type="hidden" id="xhidden" name="Xlocation" value=""></input>
-                <input type="hidden" id="yhidden" name="Ylocation" value=""></input>
+                <input type="hidden" id="xhidden" th:field="*{userlat}"></input>
+                <input type="hidden" id="yhidden" th:field="*{userlong}"></input>
+                <input type="hidden" id="regionhidden" name="regionName"></input>
                 <div id="dd" class="relative flex flex-col justify-center items-center rounded-full">
                     <button id="regionOptions" class="my-5 mx-2 py-2 px-6 md:px-10 rounded-full hover:drop-shadow-xl  h-10 primary-background">search in a region </button>
                     <div id="list"  class="absolute top-0 h-52 overflow-y-scroll overflow-x-hidden w-full bg-green-200">
-                        <button th:each="region : ${regions}" th:name="region" th:value="${region.name}" th:text="${region.name}" class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
-                        <button th:each="region : ${regions}" th:name="region" th:value="${region.name}" th:text="${region.name}" class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
-                        <button th:each="region : ${regions}" th:name="region" th:value="${region.name}" th:text="${region.name}" class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
-                        <button th:each="region : ${regions}" th:name="region" th:value="${region.name}" th:text="${region.name}" class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
-                        <button th:each="region : ${regions}" th:name="region" th:value="${region.name}" th:text="${region.name}" class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
-                        <button th:each="region : ${regions}" th:name="region" th:value="${region.name}" th:text="${region.name}" class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
-                        <button th:each="region : ${regions}" th:name="region" th:value="${region.name}" th:text="${region.name}" class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
-                        <button th:each="region : ${regions}" th:name="region" th:value="${region.name}" th:text="${region.name}" class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
-                        <button th:each="region : ${regions}" th:name="region" th:value="${region.name}" th:text="${region.name}" class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
-                        <button th:each="region : ${regions}" th:name="region" th:value="${region.name}" th:text="${region.name}" class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
-                        <button th:each="region : ${regions}" th:name="region" th:value="${region.name}" th:text="${region.name}" class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
-                        <button th:each="region : ${regions}" th:name="region" th:value="${region.name}" th:text="${region.name}" class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
-                        <button th:each="region : ${regions}" th:name="region" th:value="${region.name}" th:text="${region.name}" class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
-                        <button th:each="region : ${regions}" th:name="region" th:value="${region.name}" th:text="${region.name}" class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
-                        <button th:each="region : ${regions}" th:name="region" th:value="${region.name}" th:text="${region.name}" class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
+                        <button id="searchByRegionButton" th:each="region : ${regionNames}" th:text="${region}" th:value="${region}" onclick="sendForm()" formaction="/region" class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
                     </div>
                 </div>
 				<button id="byLocation" class="my-5 mx-2 py-2 px-6 md:px-10 rounded-full primary-background hover:drop-shadow-xl border border-cyan-200">search closest to me</button>
@@ -71,8 +58,11 @@ lang="en">
     </div>
 </div>
 
+<form th:action="@{/region}" method="post">
+    <button type="submit" class="my-5 mx-2 py-2 px-6 md:px-10 rounded-full primary-background hover:drop-shadow-xl border border-cyan-200">search closest to me</button>
+</form>
 
-<footer class="bg-green-300 flex w-full h-14 items-center justify-between fixed bottom-0 left-0">
+<footer class="footer flex w-full h-14 items-center justify-between fixed bottom-0 left-0">
     <p class="ml-8 text-2xl">privacy policy</p>
     <div class="flex justify-end">
         <img
@@ -103,6 +93,6 @@ lang="en">
     </div>
 </footer>
 
-<script src="../static/js/home.js"></script>
+<script th:src="@{/js/home.js}"></script>
 </body>
 </html>

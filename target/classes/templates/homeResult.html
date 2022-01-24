@@ -75,7 +75,7 @@
 		</div>
 		<div class="min-h-screen">
 			<div
-				th:if="not ${pharmacies}"
+				th:if="not ${pharmaList}"
 				class="items-center mt-10 py-5 rounded-xl shadow-lg md:mx-16 lg:mx-40 h-2/4"
 			>
 				<p class="text-2xl text-red-500 m-auto w-fit">
@@ -83,7 +83,7 @@
 				</p>
 			</div>
 			<div
-				th:if="${pharmacies}"
+				th:if="${pharmaList}"
 				class="flex flex-col justify-center items-center mt-10 py-5 rounded-xl shadow-lg md:mx-16 lg:mx-52"
 			>
 				<script th:inline="javascript">
@@ -92,7 +92,7 @@
 					/*]]>*/
 				</script>
 				<div
-					th:each="pharmacy : ${pharmacies}"
+					th:each="pharmacy : ${pharmaList}"
 					class="flex flex-col justify-between items-center w-10/12 rounded-xl my-2 bg-cyan-100"
 				>
 					<div class="ml-3" th:text="${pharmacy.name}">Pharmacy name</div>
