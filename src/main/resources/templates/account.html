@@ -2,6 +2,7 @@
 <html
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	lang="en"
 >
 	<head>
@@ -17,49 +18,44 @@
 		<!-- content -->
 		<div class="well ml-auto mr-auto w-1/2 mt-10">
 			<ul class="nav nav-tabs">
-				<li class="active"><a href="#home" data-toggle="tab">Profile</a></li>
+				<li class="active text-center">
+					<a href="#home" data-toggle="tab">Profile</a>
+				</li>
 				<!-- <li><a href="#profile" data-toggle="tab">Password</a></li> -->
 			</ul>
 			<div id="myTabContent" class="tab-content">
-				<div class="tab-pane active in" id="home">
-					<form id="tab" class="flex flex-col justify-center items-center">
-						<div>
-							<label class="" th:text="${#authentication.firstName}"
-								>First Name</label
+				<div class="tab-pane active in mt-2" id="home">
+					<form
+						id="tab"
+						class="flex flex-col justify-center items-center space-y-5"
+					>
+						<div class="w-full">
+							<span sec:authentication="name">First Name</span>
+							<label class="mt-5" hidden>First Name:</label
 							><input
 								type="text"
-								class="input-text"
+								class="input-text w-full"
 								placeholder="change first name"
 							/>
 						</div>
-						<div>
-							<label class="" th:text="${#authentication.lastName}"
-								>Last Name</label
+						<div class="w-full">
+							<span sec:authentication="name">Last Name</span>
+							<label class="" hidden>Last Name:</label
 							><input
 								type="text"
-								class="input-text"
+								class="input-text w-full"
 								placeholder="change last name"
 							/>
 						</div>
-						<div>
-							<label class="" th:text="${#authentication.email}">Email</label
+						<div class="w-full">
+							<span sec:authentication="name">Email</span>
+							<label class="" hidden>Email:</label
 							><input
 								type="text"
-								class="input-text"
+								class="input-text w-full"
 								placeholder="change email"
 							/>
 						</div>
-
-						<div>
-							<button class="px-10 p-3 primary-background rounded-full">
-								Save
-							</button>
-						</div>
-					</form>
-				</div>
-				<div class="tab-pane fade flex flex-col" id="profile">
-					<label for="tab2">Change password</label>
-					<form id="tab2" class="ml-auto mr-auto md:w-1/2 mt-10 items-center">
 						<label hidden>Old Password</label
 						><input
 							type="password"
@@ -69,13 +65,13 @@
 						<label hidden>New Password</label
 						><input
 							type="password"
-							class="input-text"
+							class="input-text w-full"
 							placeholder="new password"
 						/>
 						<label hidden>Confirm Password</label
 						><input
 							type="password"
-							class="input-text"
+							class="input-text w-full"
 							placeholder="confirm passwrod"
 						/>
 						<div class="flex justify-center items-center">
