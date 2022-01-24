@@ -22,27 +22,28 @@ public class HomeController {
     
     @Autowired
     SearchByRegionServiceImpl searchReg;
+
     @Autowired
     RegionRepository regrepo;
 
-    @Autowired
-    SearchByUserLocationServiceImpl searchloc;
 
     @Autowired
     searchForm search;
+    
+    @Autowired
+    SearchByUserLocationServiceImpl searchloc;
 
     @ModelAttribute(name="searchForm")
     public searchForm search(){
         return search;
     }
-
+ 
     @GetMapping("/")
     public String splash(){
         return "splash";
     }
     @GetMapping("/home")
     public String homepage(Model model) {
-
         List<String> regionNames = regrepo.getAllRegionNames() ;
         model.addAttribute("regionNames", regionNames);
         return "home";
@@ -64,4 +65,4 @@ public class HomeController {
     
     
     
-}
+} 

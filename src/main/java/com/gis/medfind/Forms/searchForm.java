@@ -16,7 +16,7 @@ import lombok.Data;
 @Component
 public class searchForm {
    @Autowired
-    RegionRepository regRepo;
+   RegionRepository regRepo;
 
    @NotEmpty(message = "Please Type The Name of The Medicine !!!")
    private String medicineName;
@@ -33,7 +33,9 @@ public class searchForm {
    private Double userlong;
 
    public Region generateRegion(){
+      System.out.println("---->>>"+this.regionName);
       Region region=regRepo.findByName(this.regionName); 
       return region;
   }
 }
+

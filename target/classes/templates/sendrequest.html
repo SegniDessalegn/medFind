@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	lang="en"
+>
+	<head>
+		<!-- head links and meta datas -->
+		<div th:replace="_fragments::heads"></div>
+	</head>
+
+	<body onresize="resize()" class="min-h-screen">
+		<!-- Navigation bar fragment -->
+		<div th:replace="_fragments :: navigation"></div>
+
+		<!-- content -->
+
+		<form
+			class="w-4/5 sm:w-3/4 md:w-2/4 lg:w-13 mt-32 grid grid-rows-6 content-around shadow-2xl rounded-2xl m-auto"
+		>
+			<h1 class="text-center text-5xl">Send Request</h1>
+
+			<input
+				class="m-5 border-b-2"
+				type="text"
+				placeholder="Name of the pharmacy owner"
+			/>
+			<input class="m-5 border-b-2" type="text" placeholder="Phone number" />
+			<input
+				class="m-5 border-b-2"
+				type="email"
+				placeholder="Enter your email"
+			/>
+
+			<input
+				class="m-5 border-b-2"
+				type="password"
+				placeholder="Name of the pharmacy"
+			/>
+			<div class="border-b-2 flex justify-between m-5 h-10">
+				<input class="" type="password" placeholder="address" />
+				<button class="bg-green-200 w-fit px-5 rounded-full">
+					Select location
+				</button>
+			</div>
+			<div class="flex items-center space-x-6 m-5 border-b-2">
+				<label class="block">
+					<input
+						type="file"
+						class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-green-300 file: hover:file:bg-voilet-100"
+						placeholder="upload license"
+					/>
+				</label>
+			</div>
+
+			<button class="bg-green-200 m-auto my-4 w-fit p-2 px-5 rounded-full">
+				Submit
+			</button>
+		</form>
+
+		<div th:replace="_fragments ::footer"></div>
+		<script th:src="@{/js/home.js}"></script>
+	</body>
+</html>

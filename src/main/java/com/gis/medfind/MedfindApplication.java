@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan(basePackages ="com.gis.medfind")
 public class MedfindApplication {
-
+ 
 	public static void main(String[] args) {
 		SpringApplication.run(MedfindApplication.class, args);
 	}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	lang="en"
+>
+	<head>
+		<!-- head links and meta datas -->
+		<div th:replace="_fragments::heads"></div>
+		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	</head>
+
+	<body onresize="resize()" class="p-0 m-0">
+		<!-- Navigation bar fragment -->
+		<div th:replace="_fragments :: navigation"></div>
+
+		<!-- content -->
+		<div class="well ml-auto mr-auto w-1/2 mt-10">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#home" data-toggle="tab">Profile</a></li>
+				<!-- <li><a href="#profile" data-toggle="tab">Password</a></li> -->
+			</ul>
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane active in" id="home">
+					<form id="tab" class="flex flex-col justify-center items-center">
+						<div>
+							<label class="" th:text="${#authentication.firstName}"
+								>First Name</label
+							><input
+								type="text"
+								class="input-text"
+								placeholder="change first name"
+							/>
+						</div>
+						<div>
+							<label class="" th:text="${#authentication.lastName}"
+								>Last Name</label
+							><input
+								type="text"
+								class="input-text"
+								placeholder="change last name"
+							/>
+						</div>
+						<div>
+							<label class="" th:text="${#authentication.email}">Email</label
+							><input
+								type="text"
+								class="input-text"
+								placeholder="change email"
+							/>
+						</div>
+
+						<div>
+							<button class="px-10 p-3 primary-background rounded-full">
+								Save
+							</button>
+						</div>
+					</form>
+				</div>
+				<div class="tab-pane fade flex flex-col" id="profile">
+					<label for="tab2">Change password</label>
+					<form id="tab2" class="ml-auto mr-auto md:w-1/2 mt-10 items-center">
+						<label hidden>Old Password</label
+						><input
+							type="password"
+							class="input-text w-full"
+							placeholder="Old passworld"
+						/>
+						<label hidden>New Password</label
+						><input
+							type="password"
+							class="input-text"
+							placeholder="new password"
+						/>
+						<label hidden>Confirm Password</label
+						><input
+							type="password"
+							class="input-text"
+							placeholder="confirm passwrod"
+						/>
+						<div class="flex justify-center items-center">
+							<button class="px-10 p-3 primary-background rounded-full mt-5">
+								Update
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div th:replace="_fragments ::footer"></div>
+		<script th:src="@{/js/home.js}"></script>
+	</body>
+</html>
