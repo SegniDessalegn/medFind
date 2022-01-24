@@ -1,6 +1,6 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 #logo-large {
 	font-family: "Russo One", sans-serif;
@@ -52,19 +52,19 @@
 
 ::-webkit-scrollbar-track {
 	background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-	background: rgb(0, 242, 255);
-}
-
-::-webkit-scrollbar-thumb:hover {
+  }
+  
+  ::-webkit-scrollbar-thumb {
+	background: rgb(111, 209, 147);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
 	background: rgb(9, 112, 118);
 }
 
 .primary {
 	/* color: rgb(0, 242, 255); */
-	color: #86efac;
+	color: rgb(134, 239, 172);
 }
 
 .secondary {
@@ -74,6 +74,10 @@
 .nav {
 	background-color: #86efac !important;
 	color: #097076;
+}
+.footer{
+	background-color: #86efac !important;
+	color:#097076;
 }
 
 .primary-background {
@@ -102,6 +106,27 @@
 	outline: none;
 }
 
+<<<<<<< HEAD
+button:focus{
+	outline:none;
+}
+
+#splash{
+	/* background-image: url(../images/splash.png);
+	background-size: cover; */
+	position:absolute;
+	top:0px;
+	left:0px;
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+	/* background-image: url(../static/images/splash.png);
+	background-size: cover; */
+}
+body{
+	z-index: 0;
+=======
 button:focus {
 	outline: none;
+>>>>>>> cac1f0a140459a8c7a3852093884ccd2b030579c
 }

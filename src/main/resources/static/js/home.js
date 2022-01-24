@@ -24,6 +24,13 @@ var form = document.getElementById("form123");
 var user_lon = undefined;
 var user_lat = undefined;
 
+
+function sendForm(){
+	document.getElementById("regionhidden").value = document.getElementById("searchByRegionButton").value;
+	form.method="post"
+	form.submit()
+}
+
 var geolocation = (function () {
 	"use strict";
 

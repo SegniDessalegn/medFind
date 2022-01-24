@@ -22,12 +22,14 @@
 			<from action="/login_success" class="flex flex-col">
 				<input
 					class="m-3 sm:m-5 border-b-2 focus:outline-none"
+					name="email"
 					type="email"
 					placeholder="Enter your email"
 				/>
 
 				<input
 					class="m-3 sm:m-5 border-b-2 focus:outline-none"
+					name="password"
 					type="password"
 					placeholder="Passwond"
 				/>
@@ -35,6 +37,7 @@
 				<a href="" class="text-center">Forgot password?</a>
 
 				<button
+					type="submit"
 					class="bg-green-200 m-auto my-2 sm:my-4 w-fit p-2 px-16 rounded-full"
 				>
 					Login
@@ -43,7 +46,7 @@
 				<div class="text-center">Don't have an account?</div>
 
 				<button
-					type="submit"
+					formaction="register"
 					class="bg-green-200 m-auto my-2 sm:my-4 w-fit p-2 px-12 rounded-full"
 				>
 					Create Account

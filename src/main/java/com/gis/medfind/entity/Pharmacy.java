@@ -29,7 +29,7 @@ public class Pharmacy{
     @Column(name = "pharmacy_id")
     private int id;
 
-    @Column(name = "pharmacy_name" ,nullable = true, length = 60)
+    @Column(name = "pharmacy_name" ,nullable = true, length = 255)
     private String name;
 
     @Column(name = "pharmacy_location", columnDefinition="Geometry",nullable = true, unique = true)

@@ -10,16 +10,19 @@
 		<div th:replace="_fragments::heads"></div>
 	</head>
 	<!-- style="background-image: url(); background-size: cover" -->
-	<body
-		class="bg-[url(../static/images/splash.png)] bg-no-repeat h-full w-full"
-	>
+	<body class="bg-no-repeat h-full w-full">
+		<img
+			id="splash"
+			th:src="@{/images/splash.png}"
+			alt="splash background image"
+		/>
 		<div class="flex flex-col w-fit m-auto mt-40 md:\32xl\:text-3xl">
 			<div
 				style="font-family: 'Russo One', sans-serif"
 				class="self-center md:text-8xl sm:text-7xl text-6xl"
 			>
-				<span class="text-green-300">med</span>
-				<span class="text-cyan-900">Find</span>
+				<span class="text-green-300">med</span
+				><span class="secondary">Find</span>
 			</div>
 			<!-- <div class="flex flex-col align-items-center"> -->
 			<p
@@ -28,8 +31,8 @@
 				Search any medicine you want, and know where to find it
 			</p>
 			<a
-				href="/home"
-				class="py-3 px-8 mt-20 md:px-16 bg-green-300 hover:bg-cyan-900 hover:text-white rounded-full w-fit self-center"
+				href="home"
+				class="py-3 px-8 mt-20 md:px-16 primary-background rounded-full w-fit self-center"
 			>
 				Get Started
 			</a>
