@@ -23,16 +23,33 @@
 			<div id="myTabContent" class="tab-content">
 				<div class="tab-pane active in" id="home">
 					<form id="tab" class="flex flex-col justify-center items-center">
-						<label class="inline">First Name</label
-						><input type="text" value="John" class="input-text inline" />
-						<label>Last Name</label
-						><input type="text" value="Smith" class="input-text" />
-						<label>Email</label
-						><input
-							type="text"
-							value="jsmith@yourcompany.com"
-							class="input-text"
-						/>
+						<div>
+							<label class="" th:text="${#authentication.firstName}"
+								>First Name</label
+							><input
+								type="text"
+								class="input-text"
+								placeholder="change first name"
+							/>
+						</div>
+						<div>
+							<label class="" th:text="${#authentication.lastName}"
+								>Last Name</label
+							><input
+								type="text"
+								class="input-text"
+								placeholder="change last name"
+							/>
+						</div>
+						<div>
+							<label class="" th:text="${#authentication.email}">Email</label
+							><input
+								type="text"
+								class="input-text"
+								placeholder="change email"
+							/>
+						</div>
+
 						<div>
 							<button class="px-10 p-3 primary-background rounded-full">
 								Save
@@ -40,7 +57,8 @@
 						</div>
 					</form>
 				</div>
-				<div class="tab-pane fade" id="profile">
+				<div class="tab-pane fade flex flex-col" id="profile">
+					<label for="tab2">Change password</label>
 					<form id="tab2" class="ml-auto mr-auto md:w-1/2 mt-10 items-center">
 						<label hidden>Old Password</label
 						><input
