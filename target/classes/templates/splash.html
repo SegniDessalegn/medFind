@@ -1,22 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" class="min-h-screen bg-no-repeat">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	lang="en"
+	class="min-h-screen bg-no-repeat"
+>
 	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<!-- <link
-			href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css"
-			rel="stylesheet"
-		/> -->
-		<link rel="stylesheet" href="../static/css/style.tailwind.css" />
-		<script src="https://cdn.tailwindcss.com"></script>
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Russo+One&display=swap"
-			rel="stylesheet"
-		/>
-		<title>medFind</title>
+		<!-- head links and meta datas -->
+		<div th:replace="_fragments::heads"></div>
 	</head>
 	<!-- style="background-image: url(); background-size: cover" -->
 	<body

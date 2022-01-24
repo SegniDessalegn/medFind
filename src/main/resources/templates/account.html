@@ -5,176 +5,72 @@
 	lang="en"
 >
 	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-	<!------ Include the above in your HEAD tag ---------->
-	<!-- <link
-			href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css"
-			rel="stylesheet"
-		/> -->
-		<!-- <link rel="stylesheet" th:href="@{/css/style.build.tailwind.css}">
-		<link rel="stylesheet" th:href="@{/css/style.dev.tailwind.css}"> -->
-		<link rel="stylesheet" href="../static/css/tailwind.css" />
-		<link rel="stylesheet" href="../static/css/style.css" />
-		<!-- <script src="https://cdn.tailwindcss.com"></script> -->
-		<!-- <link rel="stylesheet" href="../static/css/tailwind.css"> -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Russo+One&display=swap"
-			rel="stylesheet"
-		/>
-		<!-- <link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-		/> -->
-		<title>Home</title>
+		<!-- head links and meta datas -->
+		<div th:replace="_fragments::heads"></div>
+		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 	</head>
-	<body onresize="resize()" class="p-0 m-0">
-		<div class="nav flex justify-between text-lg p-3">
-			<div class="logo">
-				<span class="text-white font-bold font-sans">med</span
-				><span class="text-cyan-700 font-bold font-sans">Find</span>
-			</div>
-			<div>
-				<div class="block sm:hidden">
-					<img
-						onclick="navDropDown()"
-						class="h-7 ml-auto"
-						src="/src/main/resources/static/images/ui.png"
-						alt=""
-					/>
-				</div>
-				<div
-					id="dropdown"
-					class="links sm:flex justify-around hidden font-bold font-sans text-cyan-700"
-				>
-					<div>
-						<a
-							href="#"
-							class="hover:text-white transition-ease-in duration-500 decoration-none ml-3 text-white"
-							>Home</a
-						>
-					</div>
-					<div>
-						<a
-							href="#"
-							class="hover:text-white transition-ease-in duration-500 decoration-none ml-3"
-							>Send request</a
-						>
-					</div>
-					<div>
-						<a
-							href="#"
-							class="hover:text-white transition-ease-in duration-500 decoration-none ml-3"
-							>Wachlist</a
-						>
-					</div>
-					<div>
-						<a
-							href="#"
-							class="hover:text-white transition-ease-in duration-500 decoration-none ml-3"
-							>Contact us</a
-						>
-					</div>
-					<div sec:authorize="isAuthenticated()">
-						<a
-							href=""
-							class="hover:text-white transition-ease-in duration-500 decoration-none ml-3"
-							>Profile</a
-						>
-					</div>
-					<div sec:authorize="isAuthenticated()">
-						<a
-							href="#"
-							class="hover:text-white transition-ease-in duration-500 decoration-none ml-3"
-							>Sign Out</a
-						>
-					</div>
 
-					<div th:if="not ${sec:authorize='isAuthenticated()'}">
-						<a
-							href="/login"
-							class="hover:text-white transition-ease-in duration-500 decoration-none ml-3"
-							>Sign Up</a
-						>
-					</div>
+	<body onresize="resize()" class="p-0 m-0">
+		<!-- Navigation bar fragment -->
+		<div th:replace="_fragments :: navigation"></div>
+
+		<!-- content -->
+		<div class="well ml-auto mr-auto w-1/2 mt-10">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#home" data-toggle="tab">Profile</a></li>
+				<!-- <li><a href="#profile" data-toggle="tab">Password</a></li> -->
+			</ul>
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane active in" id="home">
+					<form id="tab" class="flex flex-col justify-center items-center">
+						<label class="inline">First Name</label
+						><input type="text" value="John" class="input-text inline" />
+						<label>Last Name</label
+						><input type="text" value="Smith" class="input-text" />
+						<label>Email</label
+						><input
+							type="text"
+							value="jsmith@yourcompany.com"
+							class="input-text"
+						/>
+						<div>
+							<button class="px-10 p-3 primary-background rounded-full">
+								Save
+							</button>
+						</div>
+					</form>
+				</div>
+				<div class="tab-pane fade" id="profile">
+					<form id="tab2" class="ml-auto mr-auto md:w-1/2 mt-10 items-center">
+						<label hidden>Old Password</label
+						><input
+							type="password"
+							class="input-text w-full"
+							placeholder="Old passworld"
+						/>
+						<label hidden>New Password</label
+						><input
+							type="password"
+							class="input-text"
+							placeholder="new password"
+						/>
+						<label hidden>Confirm Password</label
+						><input
+							type="password"
+							class="input-text"
+							placeholder="confirm passwrod"
+						/>
+						<div class="flex justify-center items-center">
+							<button class="px-10 p-3 primary-background rounded-full mt-5">
+								Update
+							</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
-		<div>
-			<!-- <div class="absolute border-2 rounded-full w-10 h-10 mr-5"></div> -->
 
-
-
-
-	
-	<div class="well ml-auto mr-auto w-1/2 mt-10">
-		 <ul class="nav nav-tabs">
-			<li class="active"><a href="#home" data-toggle="tab">Profile</a></li>
-			<!-- <li><a href="#profile" data-toggle="tab">Password</a></li> -->
-		 </ul>
-		 <div id="myTabContent" class="tab-content">
-			<div class="tab-pane active in" id="home">
-			  <form id="tab" class="flex flex-col justify-center items-center">
-					<label class="inline">First Name</label><input type="text" value="John" class="input-text inline">
-					<label>Last Name</label><input type="text" value="Smith" class="input-text">
-					<label>Email</label><input type="text" value="jsmith@yourcompany.com" class="input-text">
-					 <div>
-						<button class="px-10 p-3 primary-background rounded-full">Save</button>
-				  </div>
-			  </form>
-			</div>
-			<div class="tab-pane fade" id="profile">
-			 <form id="tab2" class="ml-auto mr-auto md:w-1/2 mt-10 items-center">
-				
-				<label hidden>Old Password</label><input type="password" class="input-text w-full" placeholder="Old passworld">
-				<label hidden>New Password</label><input type="password" class="input-text" placeholder="new password">
-				<label hidden>Confirm Password</label><input type="password" class="input-text" placeholder='confirm passwrod'>
-				<div class="flex justify-center items-center">
-					<button class="px-10 p-3 primary-background rounded-full mt-5">Update</button>
-				</div>
-			 </form>
-			</div>
-	  </div>
-
-
-
-		<footer
-			class="bg-green-300 flex w-full h-14 items-center justify-between fixed bottom-0 left-0"
-		>
-			<p class="ml-8 text-2xl">privacy policy</p>
-			<div class="flex justify-end">
-				<img
-					class="h-8 m-3"
-					src="/src/main/resources/static/images/gmail.png"
-					alt=""
-				/>
-				<img
-					class="h-8 m-3"
-					src="/src/main/resources/static/images/github.png"
-					alt=""
-				/>
-				<img
-					class="h-8 m-3"
-					src="/src/main/resources/static/images/linkedin.png"
-					alt=""
-				/>
-				<img
-					class="h-8 m-3"
-					src="/src/main/resources/static/images/telegram.png"
-					alt=""
-				/>
-				<img
-					class="h-8 m-3 mr-5"
-					src="/src/main/resources/static/images/facebook.png"
-					alt=""
-				/>
-			</div>
-		</footer>
-
-		<script src="../static/js/home.js"></script>
+		<div th:replace="_fragments ::footer"></div>
+		<script th:src="@{/js/home.js}"></script>
 	</body>
 </html>
