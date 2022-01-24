@@ -20,12 +20,13 @@ function resize() {
 	}
 }
 
-var form = document.getElementById("form123");
+var form = document.getElementById("searchform");
 var user_lon = undefined;
 var user_lat = undefined;
 
 
 function sendForm(){
+	loading();
 	document.getElementById("regionhidden").value = document.getElementById("searchByRegionButton").value;
 	form.method="post"
 	form.submit()
@@ -132,4 +133,13 @@ for (var i = 0; i < coordinates.length; i++) {
 			},
 		}).addTo(map);
 	}
+}
+
+
+
+
+function loading(){
+
+	document.getElementById("loading").style ="display: flex"
+
 }

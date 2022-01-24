@@ -10,10 +10,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Home Result</title>
-	<script src="https://cdn.tailwindcss.com"></script>
-
+		<link rel="stylesheet" th:href="@{/css/style.css}">
 		<link rel="stylesheet" th:href="@{/css/style.build.tailwind.css}" />
-		<link rel="stylesheet" th:href="@{/css/style.dev.tailwind.css}" />
+		<link rel="stylesheet" th:href="@{/css/tailwind.css}" />
 		<link
 			rel="stylesheet"
 			href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -35,7 +34,7 @@
 	</head>
     <body onresize="resize()">
         
-	<body onresize="resize()">
+	<body onresize="resize()" class="relative">
 		<div class="nav flex justify-between text-lg bg-green-300 p-3 h-min sticky top-0">
             <div class="logo"><span class="text-white font-bold font-sans">med</span><span class="text-cyan-700 font-bold font-sans">Find</span></div>
             <div>
@@ -47,9 +46,8 @@
                 <div><a href="#" class="decoration-none ml-3">Contact us</a></div>
             </div></div>
         </div>
-		
 
-		<div class="searching mt-5">
+		<!-- <div class="searching mt-5">
 			<div class="flex md:flex-row flex-col justify-around items-center">
 				<input
 					type="text"
@@ -65,6 +63,7 @@
 						Search in a region
 					</button>
 					<button
+					onclick="loading()"
 					id="byLocation"
 						class="bg-green-300 my-5 sm:my-0 mx-1 px-5 sm:px-5 py-2 sm:mx-5 hover:bg-cyan-200 rounded-full"
 					>
@@ -72,7 +71,30 @@
 					</button>
 				</div>
 			</div>
+		</div> -->
+
+
+<form method="POST" th:object="${searchForm}" onsubmit="event.preventDefault();" th:action="@{/region}" id="searchform" name="form" class="flex flex-col lg:flex-row justify-around items-center sticky top-12 bg-white">
+	<input th:field="*{medicineName}" type="text" class="input-text transition:ease-out duration-300 border-b border-blue-500 focus:outline-0 ml-10 focus:text-blue-900 focus:w-2/3" placeholder='Type your medicine here'></input>
+	<div class="ml-auto mr-auto w-2/3 flex justify-around sm:flex-row flex-col items-center">
+		<input type="hidden" id="xhidden" th:field="*{userlat}"></input>
+		<input type="hidden" id="yhidden" th:field="*{userlong}"></input>
+		<input type="hidden" id="regionhidden" name="regionName"></input>
+		<div id="dd" class="relative flex flex-col justify-center items-center rounded-full">
+			<button id="regionOptions" class="my-5 mx-2 py-2 px-6 md:px-10 rounded-full primary-background">search in a region </button>
+			<div id="list"  class="absolute top-0 h-52 overflow-y-scroll overflow-x-hidden w-full bg-green-200">
+				<button id="searchByRegionButton" th:each="region : ${regionNames}" th:text="${region}" th:value="${region}" onclick="sendForm()" formaction="/region" class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
+			</div>
 		</div>
+		<button onclick="loading()" id="byLocation" class="my-5 mx-2 py-2 px-6 md:px-10 rounded-full primary-background border">search closest to me</button>
+	</div>
+</form>
+
+<div class="absolute top-32 w-full h-4/6 flex justify-center items-center flex-col bg-white z-0 opacity-90" id="loading">
+	<div class="loader"></div>
+	<h1 class="block secondary text-2xl opacity-100">Searching your medicine</h1>
+</div>
+
 		<div class="min-h-screen">
 			<div
 				th:if="not ${pharmaList}"
@@ -93,7 +115,7 @@
 				</script>
 				<div
 					th:each="pharmacy : ${pharmaList}"
-					class="flex flex-col justify-between items-center w-10/12 rounded-xl my-2 bg-cyan-100"
+					class="flex flex-col justify-between items-center w-10/12 rounded-xl my-2 primary-background"
 				>
 					<div class="ml-3" th:text="${pharmacy.name}">Pharmacy name</div>
 					<div class="flex justify-between items-center w-full rounded-xl">
@@ -106,7 +128,6 @@
 						></div>
 						<script th:inline="javascript" type="text/javascript">
 							/*<![CDATA[*/
-							var coords = /*[[${pharmacy.location}]]*/ "0.0,0.0";
 							var name = /*[[${pharmacy.name}]]*/ "Unkown";
 							var id = String(/*[[${pharmacy.Id}]]*/);
 							// console.log(user_lon, user_lat);
