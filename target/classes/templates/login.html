@@ -57,7 +57,7 @@
 		>
 			<h1 class="text-center text-2xl sm:text-3xl m-2">Log in</h1>
 
-			<from class="flex flex-col">
+			<from action="/login_success" class="flex flex-col">
 				<input
 					class="m-3 sm:m-5 border-b-2 focus:outline-none"
 					type="email"
@@ -81,6 +81,7 @@
 				<div class="text-center">Don't have an account?</div>
 
 				<button
+					type="submit"
 					class="bg-green-200 m-auto my-2 sm:my-4 w-fit p-2 px-12 rounded-full"
 				>
 					Create Account

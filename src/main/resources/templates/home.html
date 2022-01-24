@@ -27,19 +27,19 @@ lang="en">
 	<div>
 	<div class="block sm:hidden"><img onclick="navDropDown()"  class="h-7 ml-auto" src="/src/main/resources/static/images/ui.png"alt=""/></div>
 	<div id="dropdown" class="links sm:flex justify-around hidden font-bold font-sans text-cyan-700">
-		<div><a href="#" class="hover:text-white transition-ease-in duration-500 decoration-none ml-3 text-white">Home</a></div>
-		<div><a href="#" class="hover:text-white transition-ease-in duration-500 decoration-none ml-3">Send request</a></div>
-		<div><a href="#" class="hover:text-white transition-ease-in duration-500 decoration-none ml-3">Wachlist</a></div>
+		<div><a href="/home" class="hover:text-white transition-ease-in duration-500 decoration-none ml-3 text-white">Home</a></div>
+		<div><a href="/sendRequest" class="hover:text-white transition-ease-in duration-500 decoration-none ml-3">Send request</a></div>
+		<div><a href="/watchlist" class="hover:text-white transition-ease-in duration-500 decoration-none ml-3">Wachlist</a></div>
 		<div><a href="#" class="hover:text-white transition-ease-in duration-500 decoration-none ml-3">Contact us</a></div>
 	</div></div>
 </div>
 
 
 <div class="justify-center items-center mt-40">
-    <div id="logo-large" class="text-lg font-bold m-10 text-center md:text-8xl text-6xl"><span class="primary">med</span><span class="secondary">Find</span></div>
+    <div id="logo-large" class="font-bold m-10 text-center md:text-8xl text-6xl"><span class="primary">med</span><span class="secondary">Find</span></div>
     <div class="col-span-5 grow">
         <form onsubmit="event.preventDefault();" action="region" id="form123" name="form" class="flex flex-col justify-center items-center ">
-            <input class="input-text" name="inputField" type="text" class="w-1/2  transition:ease-out duration-300 border-b border-blue-500 focus:outline-0  focus:text-blue-900 focus:w-2/3" placeholder='Type your medicine here'></input>
+            <input name="inputField" type="text" class="input-text w-1/2  transition:ease-out duration-300 border-b border-blue-500 focus:outline-0  focus:text-blue-900 focus:w-2/3" placeholder='Type your medicine here'></input>
             <div class="w-2/3" id="suggestions"></div>
 
             <div class="ml-auto mr-auto w-2/3 flex justify-around sm:flex-row flex-col items-center">
@@ -103,6 +103,6 @@ lang="en">
     </div>
 </footer>
 
-<script src="../static/js/home.js"></script>
+<script th:src="@{/js/home.js}"></script>
 </body>
 </html>
