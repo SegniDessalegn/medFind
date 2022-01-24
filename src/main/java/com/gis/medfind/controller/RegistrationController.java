@@ -51,12 +51,12 @@ public class RegistrationController {
   
    @GetMapping("/register")
    public String showRegisterForm() { 
-     return "signUpForm";
+     return "signup";
    }
    @PostMapping("/register")
     public String processRegistration(@Valid @ModelAttribute RegistrationForm Form, Errors errors,Model model) {  
       if (errors.hasErrors()){
-          return "signUpForm";
+          return "signup";
         }
         String email = Form.getEmail();
         Boolean notfound=false;
@@ -67,12 +67,12 @@ public class RegistrationController {
         };
         if(notfound != true){
             model.addAttribute("UserAlreadyExist", true);
-            return "signUpForm";
+            return "signup";
         }
         
         Form.toUser(UserRepository,passwordEncoder,roleRepo,watchListRepo);
         model.addAttribute("SuccessfullRegistration", true);
-        return "registrationSuccess";
+        return "login";
     }
 }
 
