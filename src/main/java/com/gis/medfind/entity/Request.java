@@ -28,7 +28,7 @@ public class Request {
     private Point location;
 
     @Column(name = "created_date")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
     private String createdDate;
 
     @OneToOne(cascade = CascadeType.ALL)

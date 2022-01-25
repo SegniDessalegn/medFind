@@ -14,6 +14,5 @@ public class medFindConfig {
     GeometryFactory getGeometry(){
         return new GeometryFactory(new PrecisionModel(), 4326);
     }
-    
    
 }

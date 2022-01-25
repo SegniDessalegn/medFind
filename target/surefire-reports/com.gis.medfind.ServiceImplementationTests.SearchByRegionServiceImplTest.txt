@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: com.gis.medfind.ServiceImplementationTests.SearchByRegionServiceImplTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.287 s <<< FAILURE! - in com.gis.medfind.ServiceImplementationTests.SearchByRegionServiceImplTest
+testFindPharmaciesWithInRegion  Time elapsed: 0.281 s  <<< ERROR!
+java.lang.NoClassDefFoundError: org/postgis/Geometry
+	at com.gis.medfind.ServiceImplementationTests.SearchByRegionServiceImplTest.testFindPharmaciesWithInRegion(SearchByRegionServiceImplTest.java:38)
+Caused by: java.lang.ClassNotFoundException: org.postgis.Geometry
+	at com.gis.medfind.ServiceImplementationTests.SearchByRegionServiceImplTest.testFindPharmaciesWithInRegion(SearchByRegionServiceImplTest.java:38)
+

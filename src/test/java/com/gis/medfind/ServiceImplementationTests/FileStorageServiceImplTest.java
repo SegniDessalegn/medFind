@@ -11,6 +11,7 @@ import java.util.List;
 import com.gis.medfind.serviceImplem.FileStorageServiceImpl;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -26,8 +27,8 @@ public class FileStorageServiceImplTest {
 
     final String sourcePath = "/src/test/java/com/gis/medfind/ServiceImplementationTests/test_uploads";
 
-
-    private FileStorageServiceImpl fileService = new FileStorageServiceImpl();
+    @Autowired
+    private FileStorageServiceImpl fileService;
     
     @Test
     public void testSaveAndLoadFile() {

@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: com.gis.medfind.MedfindApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 45.418 s <<< FAILURE! - in com.gis.medfind.MedfindApplicationTests
+contextLoads  Time elapsed: 0.278 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.DataException: could not execute statement
+Caused by: org.hibernate.exception.DataException: could not execute statement
+Caused by: org.postgresql.util.PSQLException: ERROR: value too long for type character varying(60)
+

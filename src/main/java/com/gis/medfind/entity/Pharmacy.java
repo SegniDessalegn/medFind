@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.gis.medfind.utils.utils;
 import com.gis.medfind.utils.utils.ConnectionMode;
@@ -34,7 +35,7 @@ public class Pharmacy{
 
     @Column(name = "pharmacy_location", columnDefinition="Geometry",nullable = true, unique = true)
     @JsonSerialize(using = GeometrySerializer.class)
-    @JsonDeserialize(using = GeometryDeserializer.class)
+    @JsonDeserialize(contentUsing = GeometryDeserializer.class)
     private Point location;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -50,6 +51,7 @@ public class Pharmacy{
 
     @ManyToOne
     @JoinColumn(name = "fk_region", referencedColumnName = "region_id")
+    @JsonBackReference
     private Region region;
 
     @OneToOne(cascade = CascadeType.ALL)
