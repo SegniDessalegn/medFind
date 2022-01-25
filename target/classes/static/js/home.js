@@ -24,7 +24,7 @@ var form = document.getElementById("form123");
 var user_lon = undefined;
 var user_lat = undefined;
 
-// document.getElementById("searchByRegionButton").value;
+
 function sendForm(region) {
 	document.getElementById("regionhidden").value = region;
 	form.method = "post";

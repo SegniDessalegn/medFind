@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: com.gis.medfind.PharmacyRepositoryTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 3.226 s <<< FAILURE! - in com.gis.medfind.PharmacyRepositoryTest
+testCreatePharmacy  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: No identifier specified for entity: com.gis.medfind.entity.FileInfo
+Caused by: org.hibernate.AnnotationException: No identifier specified for entity: com.gis.medfind.entity.FileInfo
+

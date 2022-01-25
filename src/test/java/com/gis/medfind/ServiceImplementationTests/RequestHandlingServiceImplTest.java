@@ -16,7 +16,6 @@ import com.gis.medfind.serviceImplem.RequestHandlingServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
-import org.locationtech.jts.geom.PrecisionModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
@@ -31,18 +30,17 @@ public class RequestHandlingServiceImplTest {
     @Autowired
     private PharmacyRepository pharmRepo;
      
-    
     @Autowired
     private RequestHandlingServiceImpl requestHandlingService;
-
 
     @Autowired
     private RequestRepository requestRepo;
 
     @Autowired
     private FileInfoRepository fileService;
-
-    private GeometryFactory geom = new GeometryFactory(new PrecisionModel(), 4326);
+    
+    @Autowired
+    private GeometryFactory geom;
 
     @Test
     public void testNewRequest() {

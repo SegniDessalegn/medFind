@@ -59,6 +59,7 @@ public class HomeController {
     public String processSearchLocation(@Valid searchForm form, Model model){
         List<Pharmacy> pharm = searchloc.findPharmaciesByUserLocation(form.getMedicineName(), form.getUserlat(),
                 form.getUserlong());
+    
         model.addAttribute("pharmaList", pharm);
         return "homeResult";
     }

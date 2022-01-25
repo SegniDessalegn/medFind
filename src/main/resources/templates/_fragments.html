@@ -87,7 +87,7 @@
 
 						<div
 							id="profiles"
-							sec:authorize="isAuthenticated()"
+							sec:authorize="hasAuthority('USER')"
 							class="hover:text-white hover transition-ease-in duration-500 decoration-none ml-3 h-5 w-5 rounded-full"
 						>
 							<div class="flex flex-col w-fit" hidden>
@@ -106,7 +106,7 @@
 							</div>
 						</div>
 
-						<div sec:authorize="isAnonymous()">
+						<div sec:authorize="not hasAuthority('USER')">
 							<a
 								th:href="@{/login}"
 								class="hover:text-white transition-ease-in duration-500 decoration-none ml-3"

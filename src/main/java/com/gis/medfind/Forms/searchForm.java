@@ -1,8 +1,8 @@
 package com.gis.medfind.Forms;
 
-import javax.persistence.Column;
+
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Null;
+
 
 import com.gis.medfind.entity.Region;
 import com.gis.medfind.repository.RegionRepository;

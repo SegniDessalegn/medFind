@@ -2,8 +2,6 @@ package com.gis.medfind.ServiceImplementationTests;
 
 import java.util.List;
 
-
-import com.gis.medfind.repository.PharmacyRepository;
 import com.gis.medfind.serviceImplem.SearchByUserLocationServiceImpl;
 
 import com.gis.medfind.entity.Pharmacy;
@@ -21,14 +19,11 @@ import org.springframework.test.annotation.Rollback;
 public class SearchByUserLocationServiceImplTest {
 
     @Autowired
-    private PharmacyRepository pharmRepo;
-
     private SearchByUserLocationServiceImpl searchService;
 
 
     @Test
     public void testFindPharmaciesWithInRegion() {
-        searchService = new SearchByUserLocationServiceImpl(pharmRepo);
         List<Pharmacy> close_to_user_pharms = searchService
             .findPharmaciesByUserLocation(
                 "Aceon",
