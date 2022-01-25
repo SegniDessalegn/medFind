@@ -64,6 +64,7 @@ public class watchlistController {
         WatchList watchList=watchlistServ.findWatchListByUserId(user.getId());
         Medicine medicine = medRepo.findByName(medicineName);
         watchList.removeMedicine(medicine);
+        watchlistRepo.save(watchList);
         model.addAttribute("watchlist", watchlistServ.findWatchListByUserId(user.getId()).getMedicines());
         return "watchList";
           

@@ -52,6 +52,8 @@ public class HomeController {
     public String processSearchRegion(@Valid @ModelAttribute searchForm Form, Model model) {
         List<Pharmacy> pharm = searchReg.findPharmaciesWithInRegion(Form.generateRegion().getId(),
                 Form.getMedicineName());
+        // List<String> regionNames = regrepo.getAllRegionNames() ;
+        // model.addAttribute("regionNames", regionNames);
         model.addAttribute("pharmaList", pharm);
         return "homeResult";
     }
