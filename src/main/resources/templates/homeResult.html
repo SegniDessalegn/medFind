@@ -20,9 +20,9 @@
 		/>
 	</head>
 
-	<body onresize="resize()">
-		<!-- Navigation bar fragment -->
-		<div th:replace="_fragments :: navigation"></div>
+<body onresize="resize()">
+	<!-- Navigation bar fragment -->
+	<!-- <div th:replace="_fragments :: navigation" class="nav fixed top-0"></div> -->
 
 		<!-- content -->
 		<div class="searching mt-5">
@@ -65,16 +65,18 @@
 			</div>
 			<div
 				th:if="${pharmaList}"
-				class="flex flex-col justify-center items-center mt-10 py-5 rounded-xl shadow-lg md:mx-16 lg:mx-52"
+				class="flex flex-col justify-center items-center mt-10 py-5 rounded-xl shadow-lg md:mx-16 lg:mx-52 z-0"
 			>
 				<script th:inline="javascript">
 					/*<![CDATA[*/
 					var coordinates = [];
+					var user_lat = /*[[${user_lat}]]*/ "0.0";
+					var user_lon = /*[[${user_lon}]]*/ "0.0";
 					/*]]>*/
 				</script>
 				<div
 					th:each="pharmacy : ${pharmaList}"
-					class="flex flex-col justify-between items-center w-10/12 rounded-xl my-2 bg-cyan-100"
+					class="flex flex-col justify-between items-center w-10/12 rounded-xl my-2 primary-background"
 				>
 					<div class="ml-3" th:text="${pharmacy.name}">Pharmacy name</div>
 					<div class="flex justify-between items-center w-full rounded-xl">
@@ -85,18 +87,16 @@
 					</div>
 						<div
 							class="overflow-hidden w-2/5 h-40 bg-yellow-400 rounded-xl mt-0 m-3"
-							th:id="map+(${pharmacy.id})"
+							th:id="map+${pharmacy.id}"
 						></div>
 						<script th:inline="javascript" type="text/javascript">
 							/*<![CDATA[*/
+							var name = /*[[${pharmacy.name}]]*/ "Unknown";
 						
-							var name = /*[[${pharmacy.name}]]*/ "Unkown";
-							var id = String(/*[[${pharmacy.Id}]]*/);
-							// console.log(user_lon, user_lat);
-
-							coords = coords.split(",");
-							coordinates.push([name, coords[1], coords[0], id]);
-
+							var id = String(/*[[${pharmacy.id}]]*/);
+							var coordsLat = /*[[${pharmacy.location.getX()}]]*/"0.0";
+							var coordsLon = /*[[${pharmacy.location.getY()}]]*/"0.0";
+							coordinates.push([name, coordsLat, coordsLon, id]);
 							/*]]>*/
 						</script>
 					</div>
@@ -114,4 +114,4 @@
 		<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
 		<script th:src="@{/js/home.js}"></script>
 	</body>
-</html>
+</html>git 

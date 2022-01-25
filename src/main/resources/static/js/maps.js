@@ -1,8 +1,8 @@
 // for (var i = 0; i < coordinates.length; i++) {
-// 	name = coordinates[i][0];
-// 	lat = coordinates[i][1];
-// 	lon = coordinates[i][2];
-// 	id = coordinates[i][3];
+// 	var pharmacy_name = coordinates[i][0];
+// 	var lat = coordinates[i][1];
+// 	var lon = coordinates[i][2];
+// 	var id = coordinates[i][3];
 
 // 	if (user_lon !== null && user_lat !== null) {
 // 		var map = L.map("map" + id).setView(
@@ -31,7 +31,7 @@
 // 						return new L.marker(wp.latLng, {
 // 							draggable: true,
 // 						})
-// 							.bindPopup(name)
+// 							.bindPopup(pharmacy_name)
 // 							.openPopup();
 // 					case nWps - 1:
 // 						return new L.marker(wp.latLng, {

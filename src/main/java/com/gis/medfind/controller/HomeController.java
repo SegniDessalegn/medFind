@@ -48,6 +48,7 @@ public class HomeController {
         model.addAttribute("regionNames", regionNames);
         return "home";
     }
+
     @PostMapping("/region")
     public String processSearchRegion(@Valid @ModelAttribute searchForm Form, Model model) {
         List<Pharmacy> pharm = searchReg.findPharmaciesWithInRegion(Form.generateRegion().getId(),
@@ -57,11 +58,17 @@ public class HomeController {
         model.addAttribute("pharmaList", pharm);
         return "homeResult";
     }
+
     @PostMapping("/location")
     public String processSearchLocation(@Valid searchForm form, Model model){
         List<Pharmacy> pharm = searchloc.findPharmaciesByUserLocation(form.getMedicineName(), form.getUserlat(),
                 form.getUserlong());
-    
+        List<String> regionNames = regrepo.getAllRegionNames() ;
+        
+        model.addAttribute("user_lat", form.getUserlat());
+        model.addAttribute("user_lon", form.getUserlong());
+        
+        model.addAttribute("regionNames", regionNames);
         model.addAttribute("pharmaList", pharm);
         return "homeResult";
     }
