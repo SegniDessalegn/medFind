@@ -74,6 +74,8 @@
 .nav {
 	background-color: #86efac !important;
 	color: #097076;
+	position: sticky !important;
+	top: 0px !important;
 }
 .footer{
 	background-color: #86efac !important;

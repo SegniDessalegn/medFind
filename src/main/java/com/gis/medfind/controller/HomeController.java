@@ -50,6 +50,8 @@ public class HomeController {
     public String processSearchRegion(@ModelAttribute searchForm form, Model model) {
         List<Pharmacy> pharm = searchReg.findPharmaciesWithInRegion(form.generateRegion().getId(),
                 form.getMedicineName());
+        List<String> regionNames = regrepo.getAllRegionNames() ;
+        model.addAttribute("regionNames", regionNames);
         model.addAttribute("pharmaList", pharm);
         return "homeResult";
     }
@@ -58,6 +60,12 @@ public class HomeController {
     public String processSearchLocation(@ModelAttribute searchForm form, Model model){
         List<Pharmacy> pharm = searchloc.findPharmaciesByUserLocation(form.getMedicineName(), form.getUserlat(),
                 form.getUserlong());
+        List<String> regionNames = regrepo.getAllRegionNames() ;
+        
+        model.addAttribute("user_lat", form.getUserlat());
+        model.addAttribute("user_lon", form.getUserlong());
+        
+        model.addAttribute("regionNames", regionNames);
         model.addAttribute("pharmaList", pharm);
         return "homeResult";
     }
