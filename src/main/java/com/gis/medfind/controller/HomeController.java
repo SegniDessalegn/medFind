@@ -2,6 +2,9 @@ package com.gis.medfind.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import com.gis.medfind.Forms.searchForm;
 import com.gis.medfind.entity.Pharmacy;
 import com.gis.medfind.repository.RegionRepository;
 import com.gis.medfind.serviceImplem.SearchByRegionServiceImpl;
@@ -31,7 +34,7 @@ public class HomeController {
     SearchByUserLocationServiceImpl searchloc;
 
     @ModelAttribute(name="searchForm")
-    public searchForm addSearchForm() {
+    public searchForm search(){
         return search;
     }
  
@@ -45,21 +48,17 @@ public class HomeController {
         model.addAttribute("regionNames", regionNames);
         return "home";
     }
-    
-    @PostMapping("/region") 
-    public String processSearchRegion(@ModelAttribute searchForm form, Model model) {
-        System.out.println(form.getRegionName()); 
-        List<Pharmacy> pharm = searchReg.findPharmaciesWithInRegion(form.generateRegion().getId(),
-                form.getMedicineName());
-        List<String> regionNames = regrepo.getAllRegionNames() ;
-        model.addAttribute("regionNames", regionNames);
+
+    @PostMapping("/region")
+    public String processSearchRegion(@Valid @ModelAttribute searchForm Form, Model model) {
+        List<Pharmacy> pharm = searchReg.findPharmaciesWithInRegion(Form.generateRegion().getId(),
+                Form.getMedicineName());
         model.addAttribute("pharmaList", pharm);
-        System.out.println(form.getRegionName());
         return "homeResult";
     }
 
     @PostMapping("/location")
-    public String processSearchLocation(@ModelAttribute searchForm form, Model model){
+    public String processSearchLocation(@Valid searchForm form, Model model){
         List<Pharmacy> pharm = searchloc.findPharmaciesByUserLocation(form.getMedicineName(), form.getUserlat(),
                 form.getUserlong());
         List<String> regionNames = regrepo.getAllRegionNames() ;

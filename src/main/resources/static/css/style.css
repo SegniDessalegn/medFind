@@ -52,13 +52,13 @@
 
 ::-webkit-scrollbar-track {
 	background: #f1f1f1;
-  }
-  
-  ::-webkit-scrollbar-thumb {
+}
+
+::-webkit-scrollbar-thumb {
 	background: rgb(111, 209, 147);
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
+}
+
+::-webkit-scrollbar-thumb:hover {
 	background: rgb(9, 112, 118);
 }
 
@@ -77,9 +77,9 @@
 	position: sticky !important;
 	top: 0px !important;
 }
-.footer{
+.footer {
 	background-color: #86efac !important;
-	color:#097076;
+	color: #097076;
 }
 
 .primary-background {
@@ -108,24 +108,23 @@
 	outline: none;
 }
 
-button:focus{
-	outline:none;
-}
-
-#splash{
+#splash {
 	/* background-image: url(../images/splash.png);
 	background-size: cover; */
-	position:absolute;
-	top:0px;
-	left:0px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
 	height: 100%;
 	width: 100%;
 	z-index: -1;
 	/* background-image: url(../static/images/splash.png);
 	background-size: cover; */
 }
-body{
+body {
 	z-index: 0;
+}
+button:focus {
+	outline: none;
 }
 
 

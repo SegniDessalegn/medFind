@@ -12,21 +12,32 @@
 
     <div th:replace="_fragments :: navigation"></div>
 
-<div class="justify-center items-center mt-40">
-    <div id="logo-large" class="font-bold m-10 text-center md:text-8xl text-6xl"><span class="primary">med</span><span class="secondary">Find</span></div>
-    <div class="col-span-5 grow">
-        <form method="POST" th:object="${searchForm}" onsubmit="event.preventDefault();" th:action="@{/region}" id="searchform" name="form" class="flex flex-col justify-center items-center ">
-            <input th:field="*{medicineName}" type="text" class="input-text w-1/2  transition:ease-out duration-300 border-b border-blue-500 focus:outline-0  focus:text-blue-900 focus:w-2/3" placeholder='Type your medicine here'></input>
-            <div class="w-2/3" id="suggestions"></div>
-            <div class="ml-auto mr-auto w-2/3 flex justify-around sm:flex-row flex-col items-center">
-                <input type="hidden" id="xhidden" name = "user_lat" th:field="*{userlat}"></input>
-                <input type="hidden" id="yhidden" name = "user_lon" th:field="*{userlong}"></input>
-                <input type="hidden" id="regionhidden" name="regionName"></input>
-                <div id="dd" class="relative flex flex-col justify-center items-center rounded-full">
-                    <button id="regionOptions" class="my-5 mx-2 py-2 px-6 md:px-10 rounded-full hover:drop-shadow-xl  h-10 primary-background">search in a region </button>
-                    <div id="list"  class="absolute top-0 h-52 overflow-y-scroll overflow-x-hidden w-full bg-green-200">
-                        <button id="searchByRegionButton" th:each="region : ${regionNames}" th:text="${region}" th:value="${region}" onclick="sendForm()" formaction="/region" class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
-                    </div>
+    <body onresize="resize()" class="p-0 m-0">
+
+        <!-- Navigation bar fragment -->
+		<div th:replace="_fragments :: navigation"></div>
+
+        <!-- content -->
+        <div class="justify-center items-center mt-40">
+
+            <div id="logo-large" class="font-bold m-10 text-center md:text-8xl text-6xl"><span class="primary">med</span><span class="secondary">Find</span></div>
+                <div class="col-span-5 grow">
+                    <form method="POST" th:object="${searchForm}" onsubmit="event.preventDefault();" th:action="@{/region}" id="form123" name="form" class="flex flex-col justify-center items-center ">
+                        <input th:field="*{medicineName}" type="text" class="input-text w-1/2  transition:ease-out duration-300 border-b border-blue-500 focus:outline-0  focus:text-blue-900 focus:w-2/3" placeholder='Type your medicine here'></input>
+                        <div class="w-2/3" id="suggestions"></div>
+                        <div class="ml-auto mr-auto w-2/3 flex justify-around sm:flex-row flex-col items-center">
+                            <input type="hidden" id="xhidden" th:field="*{userlat}"></input>
+                            <input type="hidden" id="yhidden" th:field="*{userlong}"></input>
+                            <input type="hidden" id="regionhidden" name="regionName"></input>
+                            <div id="dd" class="relative flex flex-col justify-center items-center rounded-full">
+                                <button id="regionOptions" class="my-5 mx-2 py-2 px-6 md:px-10 rounded-full hover:drop-shadow-xl  h-10 primary-background">search in a region </button>
+                                <div id="list"  class="absolute top-0 h-52 overflow-y-scroll overflow-x-hidden w-full bg-green-200">
+                                    <button th:each="region : ${regionNames}" th:text="${region}" th:value="${region}" th:onclick="sendForm(/*[[${region}]]*/)" formaction="/region" class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
+                                </div>
+                            </div>
+                            <button id="byLocation" class="my-5 mx-2 py-2 px-6 md:px-10 rounded-full primary-background hover:drop-shadow-xl border border-cyan-200">search closest to me</button>
+                        </div>
+                    </form>
                 </div>
 				<button onclick="loading()" id="byLocation" class="my-5 mx-2 py-2 px-6 md:px-10 rounded-full primary-background hover:drop-shadow-xl border border-cyan-200">search closest to me</button>
             </div>

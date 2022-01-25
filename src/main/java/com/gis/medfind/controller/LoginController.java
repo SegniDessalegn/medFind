@@ -6,6 +6,7 @@ import com.gis.medfind.serviceImplem.CustomSecurityService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -34,6 +35,12 @@ public class LoginController {
          }
          return null;
          }
+      @GetMapping("/login_failure")
+      public String loginFailure(Model model){
+            model.addAttribute("error",true);
+
+            return "login";
+      }
       }
     
 

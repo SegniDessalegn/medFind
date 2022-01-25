@@ -1,6 +1,5 @@
 package com.gis.medfind.security;
 
-
 import com.gis.medfind.serviceImplem.CustomUserDetailServices;
 
 import org.springframework.context.annotation.Bean;
@@ -13,7 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-//import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
@@ -44,20 +42,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
    @Override
     public void configure(HttpSecurity http) throws Exception {
          http
-         .authorizeRequests()
+                 .authorizeRequests()
+            
             .antMatchers("/admin/**").hasAuthority("ADMIN")
             .antMatchers("/handle_request/**").hasAuthority("STAFF")
-            .antMatchers("/watchlist","/home_location").hasAuthority("USER")
-            .antMatchers("/","/**").permitAll()
+            .antMatchers("/watchlist", "/home_location").hasAuthority("USER")
+            .antMatchers("/", "/**").permitAll()
             .anyRequest().authenticated()
          .and()
          .formLogin()
-            .loginPage("/login")
+                 .loginPage("/login")
+            .failureUrl("/login_failure")
             .usernameParameter("email")
+            //.accessDeniedPage("/403")
             .defaultSuccessUrl("/login_success")
             .permitAll()
          .and()
-         .logout()
+                 .logout()
              .permitAll();
         
     }

@@ -24,12 +24,10 @@ var form = document.getElementById("searchform");
 
 
 
-function sendForm(){
-	loading();
-	document.getElementById("regionhidden").value = document.getElementById("searchByRegionButton").value;
-	form.method="post"
-	form.submit()
-
+function sendForm(region) {
+	document.getElementById("regionhidden").value = region;
+	form.method = "post";
+	form.submit();
 }
 
 var geolocation = (function () {
@@ -42,11 +40,13 @@ var geolocation = (function () {
 		enableHighAccuracy: true,
 	};
 
-    function _onError (callback, error) {
-      alert("to access this service your need to turn on location service, please turn on and retry");
-      windows.history.back();
-      callback();
-    };
+	function _onError(callback, error) {
+		alert(
+			"to access this service your need to turn on location service, please turn on and retry"
+		);
+		windows.history.back();
+		callback();
+	}
 
 	function _onSuccess(callback, position) {
 		document.getElementById("xhidden").value = position.coords.latitude;

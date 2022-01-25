@@ -17,10 +17,6 @@ public class SearchByRegionServiceImpl implements SearchByRegionService{
 
     @Autowired
     private PharmacyRepository pharmRepo;
-
-    public SearchByRegionServiceImpl(PharmacyRepository pm){
-        this.pharmRepo = pm;
-    }
     
     public List<Pharmacy> findPharmaciesWithInRegion(Long regionId, String medicineName){
         List<Pharmacy> pharmsInRegion = pharmRepo.findAllPharmacyWithInRegion(regionId);

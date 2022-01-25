@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PharmacyRepository extends JpaRepository<Pharmacy,Long> {
     @Query(value = "SELECT phc.pharmacy_id, *"
-                    + "FROM pharmacy phc, region rgn "
+                    + " FROM pharmacy phc, region rgn "
                     + "WHERE ST_Within(phc.pharmacy_location, rgn.region_boundary) AND rgn.region_id= :regionId"
     , nativeQuery = true)
     List<Pharmacy> findAllPharmacyWithInRegion(@Param("regionId")  Long regionId);

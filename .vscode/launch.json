@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MedfindApplication<medfind>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.gis.medfind.MedfindApplication",
+            "projectName": "medfind",
+            "args": ""
+        }
+    ]
+}

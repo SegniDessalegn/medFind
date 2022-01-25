@@ -2,9 +2,6 @@ package com.gis.medfind.ServiceImplementationTests;
 
 import java.util.List;
 
-
-import com.gis.medfind.repository.PharmacyRepository;
-
 //import static org.assertj.core.api.Assertions.assertThat;
 
 import com.gis.medfind.repository.RegionRepository;
@@ -23,10 +20,8 @@ import org.springframework.test.annotation.Rollback;
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Rollback(false)
 public class SearchByRegionServiceImplTest {
-
+    
     @Autowired
-    private PharmacyRepository pharmRepo;
-
     private SearchByRegionServiceImpl searchService;
 
     @Autowired
@@ -35,7 +30,6 @@ public class SearchByRegionServiceImplTest {
 
     @Test
     public void testFindPharmaciesWithInRegion() {
-        searchService = new SearchByRegionServiceImpl(pharmRepo);
         String region = "Bole";
         List<Pharmacy> bole_pharms = searchService
             .findPharmaciesWithInRegion(

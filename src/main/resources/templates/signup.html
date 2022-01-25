@@ -14,7 +14,10 @@
 
 		<!-- content -->
 		<form
+			th:action="@{/register}"
+			method="post"
 			class="w-4/5 sm:w-3/4 md:w-2/4 lg:w-13 mt-14 md:mt-20 grid grid-rows-6 content-around shadow-2xl rounded-2xl mx-auto"
+			th:object="${RegistrationForm}"
 		>
 			<h1 class="text-center text-2xl sm:text-3xl mt-2">Sign up</h1>
 
@@ -23,32 +26,38 @@
 				class="m-5 border-b-2 focus:outline-none"
 				type="text"
 				placeholder="first name"
+				th:field="*{firstName}"
 			/>
 			<input
 				class="m-5 border-b-2 focus:outline-none"
 				type="text"
 				placeholder="last name"
+				th:field="*{lastName}"
 			/>
 			<input
 				class="m-5 border-b-2 focus:outline-none"
 				type="email"
 				placeholder="Enter your email"
+				th:field="*{email}"
 			/>
 
 			<input
 				class="m-5 border-b-2 focus:outline-none"
 				type="password"
 				placeholder="Password"
+				th:field="*{password}"
 			/>
-			<input
+			<!-- <input
 				class="m-5 border-b-2"
 				type="password"
 				placeholder="confirm password"
-			/>
+			/> -->
 
-			<button class="bg-green-200 m-auto my-4 w-fit p-2 px-5 rounded-full">
-				Create Account
-			</button>
+			<input
+				type="submit"
+				class="bg-green-200 m-auto my-4 w-fit p-2 px-5 rounded-full"
+				value="Create Account"
+			/>
 		</form>
 
 		<!-- footer -->

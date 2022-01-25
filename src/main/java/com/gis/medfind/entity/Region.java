@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import org.locationtech.jts.geom.Polygon;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import org.n52.jackson.datatype.jts.GeometrySerializer;
@@ -36,11 +37,17 @@ public class Region{
 
     @Column(name = "region_boundary",columnDefinition="geometry")
     @JsonSerialize(using = GeometrySerializer.class)
-    @JsonDeserialize(using = GeometryDeserializer.class)
+    @JsonDeserialize(contentUsing = GeometryDeserializer.class)
     private Polygon boundary;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "fk_region")
+    @JsonManagedReference
     private List<Pharmacy> pharmacies = new ArrayList<>();
+
+
+    public boolean addPharmacy(Pharmacy pharm){
+        return this.pharmacies.add(pharm);
+    }
 
 }

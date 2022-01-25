@@ -3,6 +3,8 @@ package com.gis.medfind.service;
 import java.nio.file.Path;
 import java.util.List;
 
+import com.gis.medfind.entity.FileInfo;
+
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,7 +13,7 @@ public interface FileStorageService {
 
     public void initialize(String subdir);
 
-    public void upload(MultipartFile file);
+    public FileInfo upload(MultipartFile file);
 
     public Resource getFile(String filename);
 
