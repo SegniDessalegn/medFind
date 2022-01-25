@@ -21,16 +21,18 @@ public class Request {
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "request_id")
     private Long id;
-
     private String senderFullName;
     private String email;
+
     private String pharmacyName;
+
     private Point location;
 
     @Column(name = "created_date")
     @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
     private String createdDate;
 
+    
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_license_file", referencedColumnName = "id")
     private FileInfo licenseFile;

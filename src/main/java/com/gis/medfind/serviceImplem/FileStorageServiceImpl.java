@@ -7,8 +7,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import com.gis.medfind.entity.FileInfo;
+import com.gis.medfind.repository.FileInfoRepository;
 import com.gis.medfind.service.FileStorageService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class FileStorageServiceImpl implements FileStorageService{
+
+    @Autowired
+    private FileInfoRepository fileRepo;
     
     private Path root = Paths.get("uploads/license");
 
@@ -49,13 +55,21 @@ public class FileStorageServiceImpl implements FileStorageService{
     }
 
     @Override
-    public void upload(MultipartFile file){
+    public FileInfo upload(MultipartFile file){
+        FileInfo metaData = null;
         try{
             Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
+
+            FileInfo license_meta = new FileInfo();
+                license_meta.setName(file.getOriginalFilename());
+                license_meta.setUrl(root.toUri().toString());
+            metaData = fileRepo.save(license_meta);
+
         }catch(IOException e){
             System.out.print(e.getMessage());
             System.out.print("File uploading failed!");
         }
+        return metaData;
     }
 
     @Override
