@@ -1,5 +1,6 @@
 package com.gis.medfind.Forms;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Null;
 
@@ -21,19 +22,16 @@ public class searchForm {
    @NotEmpty(message = "Please Type The Name of The Medicine !!!")
    private String medicineName;
 
-   @Null
+
    private String regionName;
 
-   @Null
    @Range(min = -90, max = 90)
    private Double userlat;
 
-   @Null
    @Range(min = -180, max = 180)
    private Double userlong;
 
    public Region generateRegion(){
-      System.out.println("---->>>"+this.regionName);
       Region region=regRepo.findByName(this.regionName); 
       return region;
   }

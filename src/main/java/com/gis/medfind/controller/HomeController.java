@@ -48,14 +48,14 @@ public class HomeController {
         model.addAttribute("regionNames", regionNames);
         return "home";
     }
-    @PostMapping("/home/byRegion")
+    @PostMapping("/region")
     public String processSearchRegion(@Valid @ModelAttribute searchForm Form, Model model) {
         List<Pharmacy> pharm = searchReg.findPharmaciesWithInRegion(Form.generateRegion().getId(),
                 Form.getMedicineName());
         model.addAttribute("pharmaList", pharm);
         return "homeResult";
     }
-    @PostMapping("/home/byLocation")
+    @PostMapping("/location")
     public String processSearchLocation(@Valid searchForm form, Model model){
         List<Pharmacy> pharm = searchloc.findPharmaciesByUserLocation(form.getMedicineName(), form.getUserlat(),
                 form.getUserlong());

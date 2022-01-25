@@ -2,6 +2,7 @@
 <html
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
 	lang="en"
 >
 	<head>
@@ -57,57 +58,68 @@
 					>
 						<div>
 							<a
-								href="#"
+								href="/Home"
 								class="hover:text-white transition-ease-in duration-500 decoration-none ml-3 text-white"
 								>Home</a
 							>
 						</div>
 						<div>
 							<a
-								href="#"
+								href="sendRequest"
 								class="hover:text-white transition-ease-in duration-500 decoration-none ml-3"
 								>Send request</a
 							>
 						</div>
 						<div>
 							<a
-								href="#"
+								href="/watchList"
 								class="hover:text-white transition-ease-in duration-500 decoration-none ml-3"
 								>Wachlist</a
 							>
 						</div>
 						<div>
 							<a
-								href="#"
+								href="/contact"
 								class="hover:text-white transition-ease-in duration-500 decoration-none ml-3"
 								>Contact us</a
 							>
 						</div>
-						<div sec:authorize="isAuthenticated()">
-							<a
-								href=""
-								class="hover:text-white transition-ease-in duration-500 decoration-none ml-3"
-								>Profile</a
-							>
-						</div>
-						<div sec:authorize="isAuthenticated()">
-							<!--sec:authorize="${hasRole(USER)}" -->
-							<form th:action="@{/logout}" method="post">
-								<input
-									class="hover:text-white transition-ease-in duration-500 decoration-none ml-3 font-bold"
-									type="submit"
-									value="Logout"
-								/>
-							</form>
+
+						<div
+							id="profiles"
+							sec:authorize="isAuthenticated()"
+							class="hover:text-white hover transition-ease-in duration-500 decoration-none ml-3 h-5 w-5 rounded-full"
+						>
+							<div class="flex flex-col w-fit" hidden>
+								<a
+									th:href="@{/account}"
+									class="hover:text-white hover transition-ease-in duration-100 decoration-none ml-3 h-5 w-5"
+									>profiles</a
+								>
+								<form th:action="@{/logout}" method="post">
+									<input
+										class="hover:text-white transition-ease-in duration-500 decoration-none ml-3 font-bold w-10"
+										type="submit"
+										value="Logout"
+									/>
+								</form>
+							</div>
 						</div>
 
-						<!-- <div th:if="not ${sec:authorize='isAuthenticated()'}">
-                     <a
-                        href="/login"
-                        class="hover:text-white transition-ease-in duration-500 decoration-none ml-3"
-                        >Sign Up</a
-                     >
-                  </div> -->
+						<div sec:authorize="isAnonymous()">
+							<a
+								th:href="@{/login}"
+								class="hover:text-white transition-ease-in duration-500 decoration-none ml-3"
+								>Login</a
+							>
+						</div>
+						<div sec:authorize="isAnonymous()">
+							<a
+								th:href="@{/signup}"
+								class="hover:text-white transition-ease-in duration-500 decoration-none ml-3"
+								>Sign Up</a
+							>
+						</div>
 					</div>
 				</div>
 			</nav>

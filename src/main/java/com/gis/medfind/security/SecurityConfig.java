@@ -42,22 +42,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
    @Override
     public void configure(HttpSecurity http) throws Exception {
          http
-         .authorizeRequests()
+                 .authorizeRequests()
+            
             .antMatchers("/admin/**").hasAuthority("ADMIN")
             .antMatchers("/handle_request/**").hasAuthority("STAFF")
-            .antMatchers("/watchlist","/home_location").hasAuthority("USER")
-            .antMatchers("/","/**").permitAll()
+            .antMatchers("/watchlist", "/home_location").hasAuthority("USER")
+            .antMatchers("/", "/**").permitAll()
             .anyRequest().authenticated()
          .and()
          .formLogin()
-            //.loginPage("/login")
-            //.failureUrl("/login_failure")
+                 .loginPage("/login")
+            .failureUrl("/login_failure")
             .usernameParameter("email")
             //.accessDeniedPage("/403")
             .defaultSuccessUrl("/login_success")
             .permitAll()
          .and()
-         .logout()
+                 .logout()
              .permitAll();
         
     }
