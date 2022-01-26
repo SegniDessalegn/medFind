@@ -1,7 +1,9 @@
 package com.gis.medfind.serviceImplem;
 
 import com.gis.medfind.entity.Pharmacy;
+import com.gis.medfind.entity.Region;
 import com.gis.medfind.repository.PharmacyRepository;
+import com.gis.medfind.repository.RegionRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +19,12 @@ public class SearchByRegionServiceImpl implements SearchByRegionService{
 
     @Autowired
     private PharmacyRepository pharmRepo;
+    @Autowired
+    private RegionRepository regionRepo;
     
-    public List<Pharmacy> findPharmaciesWithInRegion(Long regionId, String medicineName){
-        List<Pharmacy> pharmsInRegion = pharmRepo.findAllPharmacyWithInRegion(regionId);
+    public List<Pharmacy> findPharmaciesWithInRegion(String region_name, String medicineName){
+        Region reg = regionRepo.findByName(region_name);
+        List<Pharmacy> pharmsInRegion = pharmRepo.findAllPharmacyWithInRegion(reg.getId());
         List<Pharmacy> pharmsInRegionWithMedicine = new ArrayList<>();
         for(Pharmacy pharm: pharmsInRegion){
             if(pharm.checkMedicine(medicineName)){
