@@ -156,6 +156,7 @@ button:focus {
   
   /* #loading{
 	opacity: 0.5;
+<<<<<<< HEAD
 } */
 #profiles div{
 	display: none !important;
@@ -172,3 +173,6 @@ button:focus {
 .primary-color{
 	background-color: rgb(134, 239, 172);
 }
+=======
+} */
+>>>>>>> 3bbe1a76888aec7f1960992e147ec6011e1d77a1
