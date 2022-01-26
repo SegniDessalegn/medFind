@@ -103,7 +103,7 @@ public class StartUpDataLoader implements ApplicationListener<ContextRefreshedEv
 
 
         //Create an Admin User
-        Role adminRole = roleRepo.findByName("ADMIN_ROLE");
+        Role adminRole = roleRepo.findByName("ADMIN");
         User user = new User();
             user.setEmail("amhaznif@gmail.com");
             user.setFirstName("Amha");

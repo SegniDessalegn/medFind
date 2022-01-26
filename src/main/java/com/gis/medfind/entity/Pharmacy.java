@@ -61,7 +61,7 @@ public class Pharmacy{
     public boolean checkMedicine(String medicineName){
         String query = "SELECT drug_amount FROM "+ this.pharmacyServer.getDrugInventory().toLowerCase()
                         +" WHERE drug_name = \'"+medicineName+"\'";
-        System.out.println(query);
+        // System.out.println(query);
         String amountString = utils.connect(this.pharmacyServer, query,ConnectionMode.GET,"drug_amount");
         int amount = 0;
         if(amountString != "")
