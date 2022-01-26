@@ -74,6 +74,8 @@
 .nav {
 	background-color: #86efac !important;
 	color: #097076;
+	position: sticky !important;
+	top: 0px !important;
 }
 .footer {
 	background-color: #86efac !important;
@@ -124,3 +126,34 @@ body {
 button:focus {
 	outline: none;
 }
+
+
+#loading{
+	display: none;
+}
+
+.loader {
+	border: 16px solid #86efac;
+	border-radius: 50%;
+	border-top: 16px solid #097076;
+	width: 120px;
+	height: 120px;
+	-webkit-animation: spin 2s linear infinite;
+	animation: spin 1.5s linear infinite;
+	opacity: 1 !important;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+	0% { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+  }
+  
+  /* #loading{
+	opacity: 0.5;
+} */

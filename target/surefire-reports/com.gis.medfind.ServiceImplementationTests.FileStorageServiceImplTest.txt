@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.gis.medfind.ServiceImplementationTests.FileStorageServiceImplTest
--------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.289 s - in com.gis.medfind.ServiceImplementationTests.FileStorageServiceImplTest
