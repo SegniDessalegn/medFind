@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             
             .antMatchers("/admin/**").hasAuthority("ADMIN")
             .antMatchers("/handle_request/**").hasAuthority("STAFF")
-            .antMatchers("/watchlist", "/home_location").hasAuthority("USER")
+            .antMatchers("/watchlist","/location").hasAuthority("USER")
             .antMatchers("/", "/**").permitAll()
             .anyRequest().authenticated()
          .and()

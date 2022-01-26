@@ -27,7 +27,7 @@
 		<!-- content -->
 		<div class="searching mt-5">
 			
-			<form method="POST" th:object="${searchForm}" onsubmit="event.preventDefault();" th:action="@{/region}" id="form123" name="form" class="flex  md:flex-row flex-col justify-around items-center">
+			<form method="POST" th:object="${searchForm}" onsubmit="event.preventDefault();" th:action="@{/region}" id="searchform" name="form" class="flex  md:flex-row flex-col justify-around items-center">
 			
 				<!-- class=" focus:outline-none" -->
 				<input th:field="*{medicineName}" type="text" class="sm:ml-20 input-text  transition:ease-out duration-300  mx-4 w-2/3  border-b-4 border-blue-500 focus:outline-0  focus:text-blue-900 " placeholder='Type your medicine here'></input>

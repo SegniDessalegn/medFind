@@ -48,7 +48,7 @@
 						<form
 							th:action="@{/watchlist/search}"
 							onsubmit="event.preventDefault();"
-							id="form123"
+							id="searchform"
 							name="form"
 							th:object="${searchForm}"
 						>
@@ -61,14 +61,18 @@
 							<input type="hidden" id="xhidden" th:field="*{userlat}" />
 							<input type="hidden" id="yhidden" th:field="*{userlong}" />
 							<input
-								id="bylocation"
+								id="byLocation"
 								type="image"
 								src="../static/images/search.png"
 								class="ml-auto border-red-500 border-opacity-50 rounded-full px-2 mx-3 hover:text-white"
 							/>
 						</form>
 						<form th:action="@{/watchlist/removeFromWatchlist}" method="post">
-							<input type="hidden" name="medicineName" th:value="${medicineName.name}" />
+							<input
+								type="hidden"
+								name="medicineName"
+								th:value="${medicineName.name}"
+							/>
 							<input
 								type="image"
 								src="../static/images/minus.png"
@@ -92,7 +96,7 @@
 						name="medicineName"
 					/>
 					<input
-						type="submit"
+						type ="submit"
 						value="Add"
 						class="bg-green-300 sm:px-10 px-10 sm:ml-5 py-1 hover:bg-cyan-200 rounded-full font-bold"
 					/>
@@ -115,6 +119,8 @@
 					<script th:inline="javascript">
 						/*<![CDATA[*/
 						var coordinates = [];
+						var user_lat = /*[[${user_lat}]]*/ "0.0";
+						var user_lon = /*[[${user_lon}]]*/ "0.0";
 						/*]]>*/
 					</script>
 
@@ -136,12 +142,13 @@
 							></div>
 							<script th:inline="javascript" type="text/javascript">
 								/*<![CDATA[*/
-								var coords = /*[[${pharmacy.location}]]*/ "0.0,0.0";
-								var name = /*[[${pharmacy.name}]]*/ "Unkown";
-								var id = String(/*[[${pharmacy.Id}]]*/);
-								coords = coords.split(",");
-								coordinates.push([name, coords[1], coords[0], id]);
-								console.log(coordinates);
+
+								var name = /*[[${pharmacy.name}]]*/ "Unknown";
+
+								var id = String(/*[[${pharmacy.id}]]*/);
+								var coordsLat = /*[[${pharmacy.location.getX()}]]*/ "0.0";
+								var coordsLon = /*[[${pharmacy.location.getY()}]]*/ "0.0";
+								coordinates.push([name, coordsLat, coordsLon, id]);
 
 								/*]]>*/
 							</script>
@@ -161,6 +168,6 @@
 			crossorigin=""
 		></script>
 		<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-		<script th:src="@{/js/home.js}"></script>
+		<!-- <script th:src="@{/js/home.js}"></script> -->
 	</body>
 </html>
