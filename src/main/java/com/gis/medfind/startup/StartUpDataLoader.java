@@ -103,7 +103,7 @@ public class StartUpDataLoader implements ApplicationListener<ContextRefreshedEv
 
 
         //Create an Admin User
-        Role adminRole = roleRepo.findByName("ADMIN_ROLE");
+        Role adminRole = roleRepo.findByName("ADMIN");
         User user = new User();
             user.setEmail("amhaznif@gmail.com");
             user.setFirstName("Amha");
@@ -111,6 +111,19 @@ public class StartUpDataLoader implements ApplicationListener<ContextRefreshedEv
             user.setPassword(passwordEncoder.encode("WARMACHINEROX"));
             List<Role> role = new ArrayList<>();
                 role.add(adminRole);
+            user.setRoles(role);
+        if(userRepo.findByEmail(user.getEmail())==null)
+            userRepo.save(user);
+
+        //Create Validator 
+        Role staffrole = roleRepo.findByName("STAFF");
+        user = new User();
+            user.setEmail("amhakindu@gmail.com");
+            user.setFirstName("Gabriel");
+            user.setLastName("Kassa");
+            user.setPassword(passwordEncoder.encode("password"));
+            role = new ArrayList<>();
+                role.add(staffrole);
             user.setRoles(role);
         if(userRepo.findByEmail(user.getEmail())==null)
             userRepo.save(user);

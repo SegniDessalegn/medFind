@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -34,15 +35,15 @@ public class RegistrationForm {
     @Email(message = "Invalid Email Address")
     private String email;
      
-    @NotNull(message = "Password Can't Be Empty")
+    @NotBlank(message = "Password Can't Be Empty")
     @Size(min = 8, max = 15, message = "Password must be 8-15 characters long")
     private String password;
      
-    @NotEmpty(message = "First Name Can't be Empty")
+    @NotBlank(message = "First Name Can't be Empty")
     @Size(min = 5, message = "First Name must be at least 5 characters long")
     private String firstName;
      
-    @NotEmpty(message = "Last Name Can't be Empty")
+    @NotBlank(message = "Last Name Can't be Empty")
     @Size(min = 5, message = "Last Name must be at least 5 characters long")
     private String lastName;
 

@@ -25,7 +25,7 @@
 		<div th:replace="_fragments :: navigation"></div>
 
 		<!-- content -->
-		<div class="searching mt-5">
+		<div class="searching mt-5 min-h-screen">
 			
 			<form method="POST" th:object="${searchForm}" onsubmit="event.preventDefault();" th:action="@{/region}" id="form123" name="form" class="flex  md:flex-row flex-col justify-around items-center">
 			
@@ -45,10 +45,13 @@
 						<!-- primary-background -->
 						<button id="byLocation" class="primary-background my-5 mx-1  px-3 sm:px-5 md:px-6 py-2 sm:mx-5 h-10 hover:drop-shadow-xl  border-cyan-200  bg-green-300  hover:bg-cyan-200 rounded-full">search closest to me</button>
 				</div>
-	    </form>
-    </div>
+	    	</form>
+    	</div>
 
-
+		<div class="absolute top-32 w-full h-4/6 flex justify-center items-center flex-col bg-white z-0 opacity-90" id="loading">
+			<div class="loader"></div>
+			<h1 class="block secondary text-2xl opacity-100">Searching your medicine</h1>
+		</div>
 			
 				
 		
@@ -72,6 +75,8 @@
 				<script th:inline="javascript">
 					/*<![CDATA[*/
 					var coordinates = [];
+					var user_lat = /*[[${user_lat}]]*/ "0.0";
+					var user_lon = /*[[${user_lon}]]*/ "0.0";
 					/*]]>*/
 				</script>
 				<div
@@ -91,14 +96,12 @@
 						></div>
 						<script th:inline="javascript" type="text/javascript">
 							/*<![CDATA[*/
+							var name = /*[[${pharmacy.name}]]*/ "Unknown";
 						
-							var name = /*[[${pharmacy.name}]]*/ "Unkown";
-							var id = String(/*[[${pharmacy.Id}]]*/);
-							// console.log(user_lon, user_lat);
-
-							coords = coords.split(",");
-							coordinates.push([name, coords[1], coords[0], id]);
-
+							var id = String(/*[[${pharmacy.id}]]*/);
+							var coordsLat = /*[[${pharmacy.location.getX()}]]*/"0.0";
+							var coordsLon = /*[[${pharmacy.location.getY()}]]*/"0.0";
+							coordinates.push([name, coordsLat, coordsLon, id]);
 							/*]]>*/
 						</script>
 					</div>
