@@ -4,5 +4,5 @@ import java.util.List;
 import com.gis.medfind.entity.Pharmacy;
 
 public interface SearchByRegionService {
-    List<Pharmacy> findPharmaciesWithInRegion(Long regionId, String medicineName);
+    List<Pharmacy> findPharmaciesWithInRegion(String region_name, String medicineName);
 }

@@ -20,8 +20,11 @@ function resize() {
 	}
 }
 
-var form = document.getElementById("searchform");
+var form = document.getElementById("form123");
+var user_lon = undefined;
+var user_lat = undefined;
 
+// document.getElementById("searchByRegionButton").value;
 function sendForm(region) {
 	document.getElementById("regionhidden").value = region;
 	form.method = "post";
@@ -47,6 +50,9 @@ var geolocation = (function () {
 	}
 
 	function _onSuccess(callback, position) {
+		user_lat = position.coords.latitude;
+		user_lon = position.coords.longitude;
+
 		document.getElementById("xhidden").value = position.coords.latitude;
 		document.getElementById("yhidden").value = position.coords.longitude;
 		geoposition = position;
@@ -75,23 +81,29 @@ function searchByLocation() {
 }
 
 var forms = document.getElementsByClassName("medicines");
+for (var i; i < forms.length; i++) {}
 
+// adding map view
 for (var i = 0; i < coordinates.length; i++) {
-	var pharmacy_name = coordinates[i][0];
-	var lat = coordinates[i][1];
-	var lon = coordinates[i][2];
-	var id = coordinates[i][3];
+	name = coordinates[i][0];
+	lat = coordinates[i][1];
+	lon = coordinates[i][2];
+	id = coordinates[i][3];
 
-	if (user_lat !== null) {
-		var map = L.map("map" + id).setView(
-			[parseFloat(user_lon), parseFloat(user_lat)],
-			25
-		);
+	console.log(user_lat, user_lon);
+	if (user_lon == undefined || user_lat == undefined) {
+		var map = L.map("map" + id).setView([parseFloat(lon), parseFloat(lat)], 25);
 		L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 			attribution:
 				'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 		}).addTo(map);
-		console.log("routing");
+		L.marker([parseFloat(lon), parseFloat(lat)], { title: name }).addTo(map);
+	} else {
+		var map = L.map("map" + id).setView([user_lon, user_lat], 25);
+		L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+			attribution:
+				'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+		}).addTo(map);
 		L.Routing.control({
 			waypoints: [
 				L.latLng(parseFloat(lat), parseFloat(lon)),
@@ -110,7 +122,7 @@ for (var i = 0; i < coordinates.length; i++) {
 						return new L.marker(wp.latLng, {
 							draggable: true,
 						})
-							.bindPopup(pharmacy_name)
+							.bindPopup(name)
 							.openPopup();
 					case nWps - 1:
 						return new L.marker(wp.latLng, {
@@ -121,20 +133,5 @@ for (var i = 0; i < coordinates.length; i++) {
 				}
 			},
 		}).addTo(map);
-	} else {
-		var map = L.map("map" + id).setView([parseFloat(lat), parseFloat(lon)], 20);
-		L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-			attribution:
-				'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-		}).addTo(map);
-		L.marker([parseFloat(lat), parseFloat(lon)])
-			.addTo(map)
-			.bindPopup(pharmacy_name)
-			.openPopup()
-			.addTo(map);
 	}
-}
-
-function loading() {
-	document.getElementById("loading").style = "display: flex";
 }
