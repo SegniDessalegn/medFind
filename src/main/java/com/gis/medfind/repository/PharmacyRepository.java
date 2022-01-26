@@ -20,7 +20,7 @@ public interface PharmacyRepository extends JpaRepository<Pharmacy,Long> {
     @Query(value = "SELECT phc.pharmacy_id, phc.pharmacy_name, phc.pharmacy_location, * "
         + "FROM pharmacy phc "
         +"ORDER BY phc.pharmacy_location <-> ST_setSRID(ST_POINT(:userLongitude, :userLatitude),4326) ASC "
-        + "LIMIT 45", nativeQuery = true)
+        + "LIMIT 20", nativeQuery = true)
     List<Pharmacy> findAllPharmaciesByDistanceFromUser(@Param("userLongitude") Double userLon, @Param("userLatitude")  Double userLat);
     
     

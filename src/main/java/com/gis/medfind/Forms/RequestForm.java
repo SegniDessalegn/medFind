@@ -8,20 +8,28 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.atlis.location.model.impl.Address;
+import com.atlis.location.model.impl.MapPoint;
+import com.atlis.location.nominatim.NominatimAPI;
 import com.gis.medfind.entity.Request;
 import com.gis.medfind.serviceImplem.FileStorageServiceImpl;
 import com.gis.medfind.serviceImplem.RequestHandlingServiceImpl;
 
+import org.apache.log4j.BasicConfigurator;
 import org.hibernate.validator.constraints.Range;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.PrecisionModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-@Component
-public class RequestForm {
+import lombok.Data;
 
+@Component
+@Data
+public class RequestForm {
+    
     @NotEmpty
     @Size(min = 5, message = "Name must be at least 5 characters long")
     private String senderFullName;
@@ -33,12 +41,7 @@ public class RequestForm {
     private String pharmacyName;
 
     @NotNull
-    @Range(min = -90, max = 90)
-    private Double pharmacyLat;
-
-    @NotNull
-    @Range(min = -180, max = 180)
-    private Double pharmacyLon;
+    private String pharmacyAddress;
 
     @NotNull
     private MultipartFile license;
@@ -49,9 +52,20 @@ public class RequestForm {
         request.setSenderFullName(this.senderFullName);
         request.setEmail(this.email);
         request.setPharmacyName(this.pharmacyName);
+        Address pharmAddress = new Address();
+        pharmAddress.setDisplayName(this.pharmacyAddress);
 
-            GeometryFactory geom = new GeometryFactory(new PrecisionModel(), 4326);
-            Coordinate location = new Coordinate(this.pharmacyLat, this.pharmacyLon);
+        BasicConfigurator.configure();
+        String endpointUrl = "https://nominatim.openstreetmap.org/";
+        MapPoint addressLatLon = NominatimAPI.with(endpointUrl).getMapPointFromAddress(pharmAddress,2);
+        Double pharmacyLat=0.0;
+        Double pharmacyLon=0.0;
+        if(addressLatLon != null){
+             pharmacyLat = addressLatLon.getLatitude();
+             pharmacyLon = addressLatLon.getLongitude();
+        }
+            GeometryFactory geom = new GeometryFactory(new PrecisionModel(),4326);
+            Coordinate location = new Coordinate(pharmacyLat, pharmacyLon);
         request.setLocation(geom.createPoint(location));
 
         request.setLicenseFile(fileService.upload(this.license));

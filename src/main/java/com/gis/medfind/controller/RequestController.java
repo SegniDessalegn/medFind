@@ -1,5 +1,6 @@
 package com.gis.medfind.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -9,7 +10,6 @@ import com.gis.medfind.entity.Request;
 import com.gis.medfind.serviceImplem.FileStorageServiceImpl;
 import com.gis.medfind.serviceImplem.RequestHandlingServiceImpl;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +17,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -27,6 +28,7 @@ public class RequestController {
 
     @Autowired
     public FileStorageServiceImpl fileService;
+
     @Autowired
     public RequestForm requestForm;
 
@@ -39,18 +41,28 @@ public class RequestController {
     public String sendRequest(){
         return "sendRequest";
     }
+
+
+
     @PostMapping("/sendRequest")
-    public String processRequest(@Valid @ModelAttribute RequestForm request, Errors errors){
+    public String processRequest(@Valid @ModelAttribute RequestForm request, Errors errors, Model models) throws IOException {
+                
         if (errors.hasErrors()){
+            models.addAttribute("requestFailed", true);
             return "sendRequest";
-        }
+        }   
         request.toRequest(requestService,fileService);
-        return "RequestSuccess";
+        models.addAttribute("requestSuccess", true);
+        return "sendRequest";
     }
+
+
+
     @GetMapping("/handle_request")
     public String handleRequest(Model model){
         List<Request> requests = requestService.getAllRequests();
         model.addAttribute("requests", requests);
+        
         return "validator";
     }
     @PostMapping("handle_request/approve")

@@ -115,6 +115,19 @@ public class StartUpDataLoader implements ApplicationListener<ContextRefreshedEv
         if(userRepo.findByEmail(user.getEmail())==null)
             userRepo.save(user);
 
+        //Create Validator 
+        Role staffrole = roleRepo.findByName("STAFF");
+        user = new User();
+            user.setEmail("amhakindu@gmail.com");
+            user.setFirstName("Gabriel");
+            user.setLastName("Kassa");
+            user.setPassword(passwordEncoder.encode("password"));
+            role = new ArrayList<>();
+                role.add(staffrole);
+            user.setRoles(role);
+        if(userRepo.findByEmail(user.getEmail())==null)
+            userRepo.save(user);
+
         this.loadMedicines();
         this.loadRegionBoundaries();
         this.loadPharmacies();
