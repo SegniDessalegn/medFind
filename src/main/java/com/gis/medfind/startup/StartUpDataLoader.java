@@ -147,7 +147,7 @@ public class StartUpDataLoader implements ApplicationListener<ContextRefreshedEv
         }
         return privilege;
     }
-
+    
     @Transactional
     Role getOrCreateRoleIfNotFound(String name, List<Privilege> privileges) {
  
