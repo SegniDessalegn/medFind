@@ -38,52 +38,64 @@
 					id="watchlistMedicines"
 					class="flex flex-col justify-start items-center w-11/12 rounded-xl p-3"
 				>
-					<form
-						onclick="handleWatchlistClick()"
-						th:each="${medicine:medicines}"
-						action="watchlist/remove"
+					<div
+						th:each="medicineName:${watchlist}"
 						class="w-full my-1 flex flex-between items-center bg-cyan-200"
 					>
-						<div class="p-1 mx-3 my-1 rounded" th:text="${medicine.name}">
+						<div class="p-1 mx-3 my-1 rounded" th:text="${medicineName.name}">
 							Medicine name
 						</div>
-						<input type="hidden" name="medicine" th:value="${medicine.name}" />
-						<div class="ml-auto flex justify-end items-center">
-							<button
-								formaction="watchlist/search"
+						<form
+							th:action="@{/watchlist/search}"
+							onsubmit="event.preventDefault();"
+							id="form123"
+							name="form"
+							th:object="${searchForm}"
+						>
+							<input
+								type="hidden"
+								name="medicine"
+								th:field="*{medicineName}"
+								th:value="${medicineName.name}"
+							/>
+							<input type="hidden" id="xhidden" th:field="*{userlat}" />
+							<input type="hidden" id="yhidden" th:field="*{userlong}" />
+							<input
+								id="bylocation"
+								type="image"
+								src="../static/images/search.png"
 								class="ml-auto border-red-500 border-opacity-50 rounded-full px-2 mx-3 hover:text-white"
-							>
-								<img
-									class="w-7 hover:w-8"
-									src="../static/images/search.png"
-									alt=""
-								/>
-							</button>
-							<button
-								type="submit"
+							/>
+						</form>
+						<form th:action="@{/watchlist/removeFromWatchlist}" method="post">
+							<input type="hidden" name="medicineName" th:value="${medicineName.name}" />
+							<input
+								type="image"
+								src="../static/images/minus.png"
 								class="mx-1 ml-auto border-red-500 border-opacity-50 rounded-full hover:bg-red-500 hover:text-white"
-							>
-								<img class="w-7" src="../static/images/minus.png" alt="" />
-							</button>
-						</div>
-					</form>
+							/>
+						</form>
+
+						<div class="ml-auto flex justify-end items-center"></div>
+					</div>
 				</div>
 
 				<form
-					action="watchlist/add"
+					th:action="@{/watchlist/addToWatchlist}"
+					method="post"
 					class="flex flex-col sm:flex-row justify-between items-center m-2 mx-5 px-10 absolute bottom-0 w-11/12 bg-white"
 				>
 					<input
 						type="text"
 						class="w-2/3 border-b-black border-b-2 my-2 mr-2 transition:ease-out duration-300 focus:outline-none focus:w-3/4"
 						placeholder="insert medicine name"
+						name="medicineName"
 					/>
-					<button
+					<input
 						type="submit"
+						value="Add"
 						class="bg-green-300 sm:px-10 px-10 sm:ml-5 py-1 hover:bg-cyan-200 rounded-full font-bold"
-					>
-						Add
-					</button>
+					/>
 				</form>
 			</div>
 

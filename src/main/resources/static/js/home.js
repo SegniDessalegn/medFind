@@ -24,11 +24,11 @@ var form = document.getElementById("form123");
 var user_lon = undefined;
 var user_lat = undefined;
 
-
-function sendForm(){
-	document.getElementById("regionhidden").value = document.getElementById("searchByRegionButton").value;
-	form.method="post"
-	form.submit()
+// document.getElementById("searchByRegionButton").value;
+function sendForm(region) {
+	document.getElementById("regionhidden").value = region;
+	form.method = "post";
+	form.submit();
 }
 
 var geolocation = (function () {
@@ -41,11 +41,13 @@ var geolocation = (function () {
 		enableHighAccuracy: true,
 	};
 
-    function _onError (callback, error) {
-      alert("to access this service your need to turn on location service, please turn on and retry");
-      windows.history.back();
-      callback();
-    };
+	function _onError(callback, error) {
+		alert(
+			"to access this service your need to turn on location service, please turn on and retry"
+		);
+		windows.history.back();
+		callback();
+	}
 
 	function _onSuccess(callback, position) {
 		user_lat = position.coords.latitude;
