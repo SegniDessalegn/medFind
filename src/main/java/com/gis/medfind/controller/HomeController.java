@@ -55,6 +55,8 @@ public class HomeController {
         String medicineName = form.getMedicineName();
         List<Pharmacy> pharm = searchReg.findPharmaciesWithInRegion(regionName,
                 medicineName);
+        List<String> regionNames = regrepo.getAllRegionNames() ;
+        model.addAttribute("regionNames", regionNames);
         model.addAttribute("pharmaList", pharm);
         return "homeResult";
     }

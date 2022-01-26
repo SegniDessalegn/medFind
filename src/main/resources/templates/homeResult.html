@@ -23,29 +23,25 @@
 	<body onresize="resize()">
 		<!-- Navigation bar fragment -->
 		<div th:replace="_fragments :: navigation"></div>
-
+	
 		<!-- content -->
-		<div class="searching mt-5 min-h-screen">
-			
-			<form method="POST" th:object="${searchForm}" onsubmit="event.preventDefault();" th:action="@{/region}" id="searchform" name="form" class="flex  md:flex-row flex-col justify-around items-center">
-			
-				<!-- class=" focus:outline-none" -->
-				<input th:field="*{medicineName}" type="text" class="sm:ml-20 input-text  transition:ease-out duration-300  mx-4 w-2/3  border-b-4 border-blue-500 focus:outline-0  focus:text-blue-900 " placeholder='Type your medicine here'></input>
-				<!-- <div class="w-2/3" id="suggestions"></div> -->
-				<div class="flex justify-around sm:flex-row flex-col items-center  mt-3 md:w-9/12 lg:w-2/3 min-w-fit">
-						<input type="hidden" id="xhidden" th:field="*{userlat}"></input>
-						<input type="hidden" id="yhidden" th:field="*{userlong}"></input>
-						<input type="hidden" id="regionhidden" name="regionName"></input>
-						<div id="dd" class="relative flex flex-col justify-center items-center rounded-full">
+		<div class="searching mt-5 ">
+			<form method="POST" th:object="${searchForm}" onsubmit="event.preventDefault();" th:action="@{/region}" id="form123" name="form" class="flex  md:flex-row flex-col justify-around items-center">
+				<input id="medicineName" th:field="*{medicineName}" type="text" class="sm:ml-20 input-text  transition:ease-out duration-300  mx-4 w-2/3  border-b-4 border-blue-500 focus:outline-0  focus:text-blue-900 " placeholder='Type your medicine here' required></input>
+				<div class="w-2/3" id="suggestions"></div>
+				<div id ="dd" class="flex justify-around sm:flex-row flex-col items-center  mt-3 md:w-9/12 lg:w-2/3 min-w-fit">
+					<input type="hidden" id="xhidden" th:field="*{userlat}"></input>
+                            <input type="hidden" id="yhidden" th:field="*{userlong}"></input>
+                            <input type="hidden" id="regionhidden" name="regionName"></input>
+					<div id="dd" class="relative flex flex-col justify-center items-center rounded-full">
 								<button id="regionOptions" class="my-5  md:px-6  hover:drop-shadow-xl  h-10 primary-background bg-green-300 mx-1 px-3 sm:px-5 py-2 sm:mx-5 hover:bg-cyan-200 rounded-full">search in a region </button>
 								<div id="list"  class="absolute top-0 h-52 overflow-y-scroll overflow-x-hidden w-full bg-green-200">
-										<button th:each="region : ${regionNames}" th:text="${region}" th:value="${region}" th:onclick="sendForm(/*[[${region}]]*/)" formaction="/region" class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
+										<button th:each="region : ${regionNames}" th:text="${region}" th:value="${region}" th:onclick="sendForm(/*[[${region}]]*/)" th:formaction="@{/region}"  class="region w-full mr-5 mx-1 p-1 hover:drop-shadow-xl border primary-background">region</button>
 								</div>
 						</div>
-						<!-- primary-background -->
-						<button id="byLocation" class="primary-background my-5 mx-1  px-3 sm:px-5 md:px-6 py-2 sm:mx-5 h-10 hover:drop-shadow-xl  border-cyan-200  bg-green-300  hover:bg-cyan-200 rounded-full">search closest to me</button>
+						<button id="byLocation" class="my-5 mx-2 py-2 px-6 md:px-10 rounded-full primary-background hover:drop-shadow-xl border border-cyan-200">search closest to me</button>
 				</div>
-	    	</form>
+		</form>
     	</div>
 
 		<div class="absolute top-32 w-full h-4/6 flex justify-center items-center flex-col bg-white z-0 opacity-90" id="loading">
@@ -53,13 +49,9 @@
 			<h1 class="block secondary text-2xl opacity-100">Searching your medicine</h1>
 		</div>
 			
-				
-		
-		
-	
+			
 
-
-		<div class="min-h-screen">
+		<div >
 			<div
 				th:if="not ${pharmaList}"
 				class="items-center mt-10 py-5 rounded-xl shadow-lg md:mx-16 lg:mx-40 h-2/4"
