@@ -1,8 +1,5 @@
-# Title of the project
-medFind - Medicine Tracking System
-
 # medFind
-medFInd is a web based application that provides information regarding the availability and whereabouts of a medicine for the patients/customers through an interactive and responsive website. 
+medfind is a web based application utilizing medicine tracking system that provides information to customers regarding the availability of medicines in pharmacies and provide guidance for them to optimally obtain those medicines through an interactive and responsive website. 
 
 ## Business Features
 ### Core Business Features
