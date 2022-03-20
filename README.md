@@ -4,20 +4,18 @@ medFind - Medicine Tracking System
 # medFind
 medFInd is a web based application that provides information regarding the availability and whereabouts of a medicine for the patients/customers through an interactive and responsive website. 
 
-# Features
-- List all the pharmacies located in a region that have a medicine.
-- List all the pharamcies that are the closest to the user that also have a medicine specified by the user.
-- Rank a list of pharmacies based on their distance from a specified location.
-- provide a watchlist where users can add and, remove medicines from.
-- Provide map view through Google Maps API integration.
-
-# Business Features
-## Core Business Features
+## Business Features
+### Core Business Features
 - Medicine Reservation Feature(CRUD)*
 - Watchlist Feature(CRUD)*
-## Other Business Features
+-
+### Other Business Features
 - Medicine Searching Feature
 - Direction-Service(Map navigation) Feature
+
+## Authentication/Authorization Features
+- Signup/Login capability
+- Role-based authorization
 
 # Group Members
                 Name                  Id                 Section 
