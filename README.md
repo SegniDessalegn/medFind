@@ -8,7 +8,7 @@ medFInd is a web based application that provides information regarding the avail
 ### Core Business Features
 - Medicine Reservation Feature(CRUD)*
 - Watchlist Feature(CRUD)*
--
+
 ### Other Business Features
 - Medicine Searching Feature
 - Direction-Service(Map navigation) Feature
